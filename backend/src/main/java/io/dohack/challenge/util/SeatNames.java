@@ -9,4 +9,5 @@ public class SeatNames {
     public static final String KAI_SEAT = "Kai Seat";
     public static final String MARIUS_SEAT = "Marius Seat";
     public static final String SILAS_SEAT = "Silas Seat";
+    public static final String ANTON_SEAT = "Anton Seat";
 }

@@ -33,7 +33,7 @@ public class User {
     private Double defaultCommuteDistance;
 
     @Enumerated(EnumType.STRING)
-    private CommuteType defaultCommuteTyp;
+    private CommuteType defaultCommuteType;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "user_id")

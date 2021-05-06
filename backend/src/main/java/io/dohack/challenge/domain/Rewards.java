@@ -20,4 +20,6 @@ public class Rewards {
 
     private String description;
 
+    private Double pointPrice;
+
 }

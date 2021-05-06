@@ -1,4 +1,4 @@
-package io.dohack.challenge;
+package io.dohack.challenge.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
