@@ -28,7 +28,7 @@ public class RewardController {
         return redeemRewardsService.redeemReward(username, id);
     }
 
-    @GetMapping("rewards")
+    @GetMapping("rewards/all")
     public List<Rewards> readRewards() {
         return readRewardsService.readAllRewards();
     }

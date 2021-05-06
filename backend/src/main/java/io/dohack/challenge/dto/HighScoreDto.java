@@ -11,5 +11,5 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode
 public class HighScoreDto {
     private String displayName;
-    private Double points;
+    private Double co2Score;
 }
