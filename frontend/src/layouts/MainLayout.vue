@@ -2,23 +2,22 @@
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
       <q-toolbar>
-        <q-icon name="fas fa-leaf" size="28px" color="accent" />
+        <q-icon name="fas fa-leaf" size="28px" color="white" />
 
         <q-space />
 
         <q-toggle
           v-model="darkMode"
           icon="dark_mode"
-          color="accent"
+          color="primary"
           unchecked-icon="light_mode"
           @input="toggleDarkMode()"
         />
-        <q-btn flat icon="settings" color="secondary" to="/user-settings" />
+        <q-btn flat icon="settings" to="/user-settings" />
         <q-btn
           flat
           v-if="$store.getters['credentials/isAuthenticated']"
           icon="logout"
-          color="secondary"
           @click="logout"
         />
       </q-toolbar>
@@ -29,7 +28,7 @@
     </q-page-container>
 
     <q-footer>
-      <q-tabs class="text-secondary">
+      <q-tabs class="text-dark bg-white">
         <q-route-tab icon="home" to="/" />
         <q-route-tab icon="edit" to="/statistics/form" />
       </q-tabs>
