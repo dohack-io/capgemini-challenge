@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class StartUpDataService implements ApplicationListener<ApplicationReadyEvent> {
     private final UserRepository userRepository;
+    private final MockElectricSensorService mockElectricSensorService;
     @Override
     public void onApplicationEvent(ApplicationReadyEvent event) {
         userRepository.save(
@@ -93,5 +94,6 @@ public class StartUpDataService implements ApplicationListener<ApplicationReadyE
                         .defaultCommuteType(CommuteType.CAR)
                         .build()
         );
+        mockElectricSensorService.readMockedSensorValues();
     }
 }

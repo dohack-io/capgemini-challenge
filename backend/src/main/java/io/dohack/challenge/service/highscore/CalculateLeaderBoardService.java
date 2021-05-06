@@ -1,4 +1,4 @@
-package io.dohack.challenge.service;
+package io.dohack.challenge.service.highscore;
 
 import io.dohack.challenge.dto.HighScoreDto;
 

@@ -1,9 +1,9 @@
-package io.dohack.challenge.service.impl;
+package io.dohack.challenge.service.highscore.impl;
 
 import io.dohack.challenge.domain.User;
 import io.dohack.challenge.dto.HighScoreDto;
 import io.dohack.challenge.repositories.UserRepository;
-import io.dohack.challenge.service.CalculateLeaderBoardService;
+import io.dohack.challenge.service.highscore.CalculateLeaderBoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

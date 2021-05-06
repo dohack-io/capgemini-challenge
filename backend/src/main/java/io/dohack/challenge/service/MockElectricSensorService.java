@@ -20,7 +20,7 @@ public class MockElectricSensorService {
     private final MockedSensorValueRepository mockedSensorValueRepository;
 
     @Scheduled(fixedRate = 600000)
-    private void readMockedSensorValues() {
+    public void readMockedSensorValues() {
         mockedSensorValueRepository.save(
                 new MockedSensorValue(SeatNames.ANTON_SEAT, randomizeValue(), LocalDateTime.now())
         );
