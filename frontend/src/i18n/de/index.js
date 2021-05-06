@@ -4,10 +4,10 @@ export default {
   userStatisticsForm: {
     title: 'Statistik eintragen',
     coffee: {
-      label: 'Wie viel Kaffee hast du getrunken?'
+      label: 'Anzahl Kaffee'
     },
     lunch: {
-      label: 'Was hast du heute zu Mittag gegessen?'
+      label: 'Mittagessen'
     },
     commuteInput: {
       title: 'Pendelfahrt {index} angeben',
