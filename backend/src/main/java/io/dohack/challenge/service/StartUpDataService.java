@@ -1,7 +1,9 @@
 package io.dohack.challenge.service;
 
 import io.dohack.challenge.domain.CommuteType;
+import io.dohack.challenge.domain.DailyChallenge;
 import io.dohack.challenge.domain.User;
+import io.dohack.challenge.repositories.DailyChallengeRepository;
 import io.dohack.challenge.repositories.UserRepository;
 import io.dohack.challenge.util.SeatNames;
 import lombok.RequiredArgsConstructor;
@@ -9,11 +11,15 @@ import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+
 @Service
 @RequiredArgsConstructor
 public class StartUpDataService implements ApplicationListener<ApplicationReadyEvent> {
     private final UserRepository userRepository;
     private final MockElectricSensorService mockElectricSensorService;
+    private final DailyChallengeRepository dailyChallengeRepository;
+
     @Override
     public void onApplicationEvent(ApplicationReadyEvent event) {
         userRepository.save(
@@ -95,5 +101,45 @@ public class StartUpDataService implements ApplicationListener<ApplicationReadyE
                         .build()
         );
         mockElectricSensorService.readMockedSensorValues();
+        dailyChallengeRepository.save(
+                new DailyChallenge(
+                        null,
+                        "",
+                        LocalDate.of(2021, 5, 4),
+                        10.
+                )
+        );
+        dailyChallengeRepository.save(
+                new DailyChallenge(
+                        null,
+                        "",
+                        LocalDate.of(2021, 5, 5),
+                        10.
+                )
+        );
+        dailyChallengeRepository.save(
+                new DailyChallenge(
+                        null,
+                        "",
+                        LocalDate.of(2021, 5, 6),
+                        10.
+                )
+        );
+        dailyChallengeRepository.save(
+                new DailyChallenge(
+                        null,
+                        "",
+                        LocalDate.of(2021, 5, 7),
+                        10.
+                )
+        );
+        dailyChallengeRepository.save(
+                new DailyChallenge(
+                        null,
+                        "",
+                        LocalDate.of(2021, 5, 8),
+                        10.
+                )
+        );
     }
 }
