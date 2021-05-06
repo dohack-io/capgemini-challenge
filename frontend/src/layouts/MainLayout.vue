@@ -11,6 +11,14 @@
     <q-page-container>
       <router-view />
     </q-page-container>
+
+    <q-footer>
+      <q-tabs>
+        <q-route-tab icon="home" to="/"/>
+        <q-route-tab icon="edit" to="/statistics/form"/>
+        <q-route-tab icon="settings" to="/user-settings"/>
+      </q-tabs>
+    </q-footer>
   </q-layout>
 </template>
 
