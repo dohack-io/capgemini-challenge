@@ -6,11 +6,32 @@ export default {
     coffee: {
       label: 'Wie viel Kaffee hast du getrunken?'
     },
-    commuteDistance: {
-      label: '?'
-    },
     lunch: {
       label: 'Was hast du heute zu Mittag gegessen?'
-    }
+    },
+    commuteInput: {
+      title: 'Pendelfahrt {index} angeben',
+      commuteType: {
+        label: 'Fortbewegungsmittel',
+      },
+      commuteDistance: {
+        label: 'Distanz'
+      },
+      add: 'Pendelfahrt hinzufügen'
+    },
+  },
+  commuteType: {
+    walking: 'Laufen',
+    bike: 'Fahrrad',
+    car: 'Auto',
+    carpool: 'Fahrgemeinschaft',
+    bus: 'Bus',
+    tram: 'U-Bahn',
+    train: 'Zug',
+    plane: 'Flugzeug',
+    ebike: 'E-Bike',
+    escooter: 'E-Scooter',
+    ecar: 'Elektroauto',
+    hybridcar: 'Hybridauto'
   }
 }
