@@ -76,11 +76,11 @@ export default {
   },
   mounted() {
     let data = JSON.parse(localStorage.getItem('data'));
-    this.email = data.email ?? '';
-    this.displayName = data.displayName ?? '';
-    this.seat = data.seat ?? '';
-    this.defaultCommuteDistance = data.defaultCommuteDistance ?? undefined;
-    this.defaultCommuteType = data.defaultCommuteType ?? undefined;
+    this.email = data?.email ?? '';
+    this.displayName = data?.displayName ?? '';
+    this.seat = data?.seat ?? '';
+    this.defaultCommuteDistance = data?.defaultCommuteDistance ?? undefined;
+    this.defaultCommuteType = data?.defaultCommuteType ?? undefined;
   },
   methods: {
     saveSettings() {
