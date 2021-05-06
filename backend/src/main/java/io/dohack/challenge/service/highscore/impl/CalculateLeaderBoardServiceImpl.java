@@ -19,7 +19,9 @@ public class CalculateLeaderBoardServiceImpl implements CalculateLeaderBoardServ
     @Override
     public List<HighScoreDto> calculateCurrentLeaderBoard() {
         return userRepository.findAll()
-                .stream().sorted(Comparator.comparingDouble(User::getCo2Score))
+                .stream()
+                .filter(it -> it.getCo2Score() >= 0)
+                .sorted(Comparator.comparingDouble(User::getCo2Score))
                 .map(it -> new HighScoreDto(it.getDisplayName(), it.getCo2Score()))
                 .collect(Collectors.toList());
     }

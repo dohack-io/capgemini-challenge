@@ -14,8 +14,8 @@ import java.util.Random;
 @RequiredArgsConstructor
 public class MockElectricSensorService {
 
-    private static final Double RANGE_MINIMUM = 50.0;
-    private static final Double RANGE_MAXIMUM = 100.0;
+    private static final Double RANGE_MINIMUM = .4;
+    private static final Double RANGE_MAXIMUM = .5;
 
     private final MockedSensorValueRepository mockedSensorValueRepository;
 

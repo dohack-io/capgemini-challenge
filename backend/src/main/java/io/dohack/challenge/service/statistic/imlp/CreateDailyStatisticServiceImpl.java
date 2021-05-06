@@ -40,10 +40,27 @@ public class CreateDailyStatisticServiceImpl implements CreateDailyStatisticServ
                             user.get()))).collect(Collectors.toList()))
                     .build();
             statistics.setPointsEarned(calculateScore(statistics));
+            statistics.setCo2(calculateCo2Score(statistics));
             user.get().getUserDailyStatisticsList().add(statistics);
+            user.get().setCo2Score(
+                    user.get().getUserDailyStatisticsList().stream().mapToDouble(
+                            UserDailyStatistics::getCo2
+                    ).average().orElse(-1)
+            );
             userRepository.save(user.get());
         }
         return null;
+    }
+
+    //calculation in mKg
+    private Double calculateCo2Score(UserDailyStatistics statistics) {
+        return GROUND_SCORE +
+                (statistics.getNumberOfCoffees() * .075) +
+                statistics.getEnergyConsumption() +
+                (statistics.getLunchScore()) +
+                statistics.getCommuteList().stream()
+                        .map(commute -> (commute.getType().value * commute.getDistance() / 1000))
+                        .reduce(0.0, Double::sum);
     }
 
     private Double calculateScore(UserDailyStatistics statistics) {

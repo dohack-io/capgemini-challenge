@@ -32,9 +32,12 @@ public class UserDailyStatistics {
 
     private Double pointsEarned;
 
+    private Double co2;
+
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "user_daily_statistics_id")
     @ToString.Exclude
     private List<Commute> commuteList = new ArrayList<>();
+
 
 }
