@@ -1,16 +1,21 @@
 package io.dohack.challenge.config;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 @Component
-@Configuration
 @ConfigurationProperties(prefix = "emission.commute")
-@PropertySource("classpath:applicaton.yml")
+@PropertySource("classpath:application.yml")
 @Getter
+@Setter
+@ToString
+@NoArgsConstructor
 public class Co2CommuteConfig {
     private Double walking;
     private Double bike;
