@@ -53,5 +53,20 @@ export default {
     escooter: 'E-Scooter',
     ecar: 'Elektroauto',
     hybridcar: 'Hybridauto'
+  },
+  login: {
+    title: 'Login',
+    username: 'Nutzername',
+    password: 'Passwort',
+    send: 'Login',
+    register: 'Registrieren'
+  },
+  register: {
+    title: 'Registrieren',
+    username: 'Nutzername',
+    password: 'Passwort',
+    repeatPassword: 'Passwort wiederholen',
+    send: 'Registrieren',
+    login: 'Login'
   }
 }
