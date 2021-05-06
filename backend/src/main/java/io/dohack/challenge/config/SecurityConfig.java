@@ -2,6 +2,7 @@ package io.dohack.challenge.config;
 
 import io.dohack.challenge.domain.User;
 import io.dohack.challenge.repositories.UserRepository;
+import kotlin.Pair;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -52,11 +53,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     @Override
     public UserDetailsService userDetailsService() {
-        List<User> users = userRepository.findAll();
+        List<Pair<String, String>> usernameAndPassword = Arrays.asList(
+                new Pair("anton", "anton123"),
+                new Pair("christoph", "christoph123"),
+                new Pair("johannes", "johannes123"),
+                new Pair("kai", "kai123"),
+                new Pair("marius", "marius123"),
+                new Pair("silas", "silas123"));
         return new InMemoryUserDetailsManager(
-                users.stream().map(it -> org.springframework.security.core.userdetails.User.withDefaultPasswordEncoder()
-                        .username(it.getUsername())
-                        .password(it.getPassword())
+                usernameAndPassword.stream().map(it -> org.springframework.security.core.userdetails.User.withDefaultPasswordEncoder()
+                        .username(it.getFirst())
+                        .password(it.getSecond())
                         .roles("USER").build()).collect(Collectors.toList())
         );
     }
