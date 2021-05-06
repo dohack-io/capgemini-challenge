@@ -23,6 +23,7 @@ public class ChallengeController {
     Optional<DailyChallenge> getDailyChallenge() {
         return readChallengesService.readTodayChallenge();
     }
+
     @GetMapping("challenge/all")
     List<DailyChallenge> getAllDailyChallenge() {
         return readChallengesService.readAllDailyChallenges();

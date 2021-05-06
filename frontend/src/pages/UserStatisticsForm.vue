@@ -89,7 +89,7 @@ export default {
     }
 
     function onSubmit() {
-
+      // POST statistics/daily/create
     }
 
     return {
