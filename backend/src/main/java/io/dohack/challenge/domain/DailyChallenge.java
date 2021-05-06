@@ -4,6 +4,7 @@ import lombok.*;
 import lombok.extern.java.Log;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.time.LocalDate;
 
@@ -17,6 +18,7 @@ import java.time.LocalDate;
 public class DailyChallenge {
 
     @Id
+    @GeneratedValue
     private Long id;
 
     private String description;
