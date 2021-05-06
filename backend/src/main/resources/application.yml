@@ -1,0 +1,64 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb
+  h2:
+    console:
+      enabled: true
+
+graphql:
+    servlet:
+      mapping: /api/graphql
+      enabled: true
+
+graphiql:
+    enabled: true
+    mapping: /graphiql
+    endpoint:
+      graphql: /api/graphql
+    cdn:
+      enabled: true
+      version: 0:12:0
+
+emission:
+    commute:
+        walking: 0
+        bike: 0
+        ebike: 25
+        car:
+            normal: 143
+            hybrid: 90
+        bus:
+            shortterm: 80
+            longterm: 29
+        train:
+            shortterm: 55
+            longterm: 29
+        tram:
+            shortterm: 55
+            longterm: 29
+        plain:
+            country: 214
+            global: 999
+        escooter: 126
+    grocery:
+      cattle: 13.3
+      pig: 3.3
+      poultry: 3.5
+      lamb: 39
+      fish: 3.1
+      rice: 4.1
+      noodles: 0.9
+      fries: 5.7
+      butter: 23.8
+      cream: 7.6
+      milk: 0.9
+      potatoes: 0.2
+      lenses: 0.3
+      oatmeal: 0.3
+
+
+
+
