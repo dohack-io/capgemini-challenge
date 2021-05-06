@@ -1,6 +1,9 @@
 export default {
   failed: 'Action failed',
   success: 'Action was successful',
+  index: {
+    activities: 'Aktivitäten'
+  },
   userStatisticsForm: {
     title: 'Statistik eintragen',
     coffee: {

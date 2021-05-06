@@ -10,7 +10,7 @@
     <q-card class="my-card q-ma-md q-pa-md">
       <q-timeline color="secondary">
         <q-timeline-entry heading>
-          Aktivitäten
+          {{ $t('index.activities') }}
         </q-timeline-entry>
         <q-timeline-entry title="Event Title" subtitle="06.05.2020">
           <div>
@@ -88,6 +88,12 @@ export default {
   computed: {
     progressLabel() {
       return this.points + "/" + this.nextLevel;
+    }
+  },
+  async mounted() {
+    const challenges = await fetch('https://splitt3r-dohack-io-capgemini-challenge-pj77-8081.githubpreview.dev/challenge/all');
+    for (let challenge in challenges) {
+      alert(challenge);
     }
   }
 };
