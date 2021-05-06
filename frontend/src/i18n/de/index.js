@@ -3,10 +3,14 @@ export default {
   success: "Action was successful",
   index: {
     activities: "Aktivitäten",
-    next_level: "Nächstes Level"
+    nextLevel: "Nächstes Level",
+    sending: {
+      error: 'Fehler beim Abrufen der Challenges.'
+    }
   },
   dailyChallengesView: {
     title: 'Daily Challenge',
+    challengeName: 'Titel',
     description: 'Beschreibung',
     points: 'Punkte',
     sending: {

@@ -2,73 +2,34 @@
   <q-page class="q-pa-md">
     <q-card class="my-card q-mb-md">
       <q-card-section>
-        <div class="text-h6">{{ $t("index.next_level") }}</div>
-        <q-linear-progress
-          size="25px"
-          :value="progress"
-          color="secondary"
-          @click="randomize"
-          label="Change Model"
-        >
+        <div class="text-h6">{{ $t("index.nextLevel") }}</div>
+
+        <q-linear-progress size="25px" :value="progress" color="secondary" @click="randomize" label="Change Model">
           <div class="absolute-full flex flex-center">
             <q-badge color="white" text-color="black" :label="progressLabel" />
           </div>
         </q-linear-progress>
       </q-card-section>
     </q-card>
-    <q-card class="my-card">
+
+    <q-inner-loading v-if="requestStatus === 'sending'">
+      <q-spinner-gears size="50px" color="primary" />
+    </q-inner-loading>
+
+    <q-banner class="bg-negative text-white" v-if="requestStatus === 'error'">
+      {{ $t('index.sending.error') }}
+    </q-banner>
+
+    <q-card class="my-card" v-if="requestStatus === 'success'">
       <q-card-section>
         <q-timeline color="secondary">
           <q-timeline-entry heading>
             {{ $t("index.activities") }}
           </q-timeline-entry>
-          <q-timeline-entry title="Event Title" subtitle="06.05.2020">
-            <div>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
-            </div>
-          </q-timeline-entry>
-          <q-timeline-entry title="Event Title" subtitle="05.05.2020">
-            <div>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
-            </div>
-          </q-timeline-entry>
-          <q-timeline-entry title="Event Title" subtitle="04.05.2020">
-            <div>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
-            </div>
-          </q-timeline-entry>
-          <q-timeline-entry title="Event Title" subtitle="03.05.2020">
-            <div>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
-            </div>
-          </q-timeline-entry>
-          <q-timeline-entry title="Event Title" subtitle="02.05.2020">
-            <div>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
-            </div>
-          </q-timeline-entry>
-          <q-timeline-entry title="Event Title" subtitle="01.05.2020">
-            <div>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
-            </div>
+
+          <q-timeline-entry v-for="(entry, index) in challengeList" :title="entry.title" :subtitle="entry.date"
+                            :key="index">
+            <div>{{ entry.description }}</div>
           </q-timeline-entry>
         </q-timeline>
       </q-card-section>
@@ -86,24 +47,15 @@
 export default {
   name: "PageIndex",
   data() {
-    const itemList = [
-      {
-        name: "favorite",
-        label: "ba",
-        caption: "ba"
-      },
-      {
-        name: "star",
-        label: "ba",
-        caption: "ba"
-      }
-    ];
+    const challengeList = [];
+    const requestStatus = 'sending';
 
     return {
       progress: 0.65,
       points: 650,
       nextLevel: 1000,
-      itemList
+      requestStatus,
+      challengeList
     };
   },
   methods: {
@@ -120,6 +72,15 @@ export default {
     }
   },
   async mounted() {
+    const requestResult = await fetch('http://localhost:8081/challenge/all', {
+      method: 'GET'
+    });
+    if (requestResult.ok) {
+      this.challengeList = await requestResult.json();
+      this.requestStatus = 'success'
+    } else {
+      this.requestStatus = 'error'
+    }
   }
 };
 </script>

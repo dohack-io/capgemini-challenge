@@ -7,6 +7,7 @@
     </q-inner-loading>
 
     <div v-if="requestStatus === 'success'" class="q-mt-lg">
+      <div>{{ $t('dailyChallengesView.challengeName') }}: {{ dailyChallenge.title }}</div>
       <div>{{ $t('dailyChallengesView.description') }}: {{ dailyChallenge.description }}</div>
       <div>{{ $t('dailyChallengesView.points') }}: {{ dailyChallenge.challengePoints }}</div>
     </div>
