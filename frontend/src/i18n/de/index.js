@@ -17,9 +17,12 @@ export default {
     coffee: {
       label: 'Anzahl Kaffee'
     },
-    lunch: {
-      label: 'Lunch-Score',
-      hint: ''
+    food: {
+      title: 'Lunch-Sore',
+      weight: 'Gewicht (g)',
+      type: 'Zutat',
+      add: 'Zutat hinzufügen',
+      score: 'Score'
     },
     dailyChallenge: {
       label: 'Daily Challenge geschafft'
@@ -72,6 +75,22 @@ export default {
     escooter: 'E-Scooter',
     ecar: 'Elektroauto',
     hybridcar: 'Hybridauto'
+  },
+  foodType: {
+    beef: 'Rind',
+    pig: 'Schwein',
+    chicken: 'Geflügel',
+    lamb: 'Lamm',
+    fish: 'Fisch',
+    rice: 'Reis',
+    noodles: 'Nudeln',
+    fries: 'Pommes',
+    butter: 'Butter',
+    creme: 'Sahne',
+    milk: 'Milch',
+    potatoes: 'Kartoffeln',
+    lentil: 'Linsen',
+    oatmeal: 'Haferflocken'
   },
   login: {
     title: 'Login',

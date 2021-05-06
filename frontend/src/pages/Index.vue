@@ -118,7 +118,7 @@ export default {
     }
   },
   async mounted() {
-    const challenges = await fetch('https://splitt3r-dohack-io-capgemini-challenge-pj77-8081.githubpreview.dev/challenge/all');
+    const challenges = await fetch('http://localhost:8081/challenge/all');
     for (let challenge in challenges) {
       alert(challenge);
     }

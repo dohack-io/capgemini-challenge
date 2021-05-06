@@ -1,14 +1,14 @@
 export default {
   namespaced: true,
   state: {
-    username: String
+    username: ''
   },
   getters: {
     getUsername (state) {
       return state.username;
     },
     isAuthenticated (state) {
-      return !!state.username;
+      return state.username && typeof state.username === 'string';
     }
   },
   mutations: {
@@ -18,8 +18,5 @@ export default {
     clearUsername (state) {
       state.username = undefined;
     }
-  },
-  actions: {
-
   }
 }

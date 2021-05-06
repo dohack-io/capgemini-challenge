@@ -34,12 +34,11 @@ export default {
       method: 'GET'
     });
     if (dailyChallengeResult.ok) {
-      this.requestStatus = 'success';
       this.dailyChallenge = await dailyChallengeResult.json();
+      this.requestStatus = 'success';
     } else {
       this.requestStatus = 'error';
     }
-
   }
 }
 </script>
