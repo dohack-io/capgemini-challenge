@@ -28,10 +28,10 @@ const router = new VueRouter({
 
 router.beforeResolve((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
-    if (store.getters.isAuthenticated) {
+    if (store.getters["credentials/isAuthenticated"]) {
       next();
     } else {
-      next({path: '/login'})
+      next({path: '/login'});
     }
   }
   next();

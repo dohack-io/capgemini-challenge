@@ -1,5 +1,11 @@
 <template>
   <q-page class="q-ma-lg">
+    <q-banner class="bg-negative text-white q-mb-lg" v-if="errors.length > 0">
+      <div v-for="(error, index) in errors" :key="index">
+        {{ error }}
+      </div>
+    </q-banner>
+
     <q-form ref="myForm" @submit="onSubmit">
       <div class="text-h4 text-no-wrap">{{ $t('login.title') }}</div>
 
@@ -20,19 +26,29 @@
 </template>
 
 <script>
+import {ref} from "@vue/composition-api";
+
 export default {
   name: "Login",
-  data() {
-    const username = '';
-    const password = '';
+  setup() {
+    const username = ref('');
+    const password = ref('');
+    const errors = ref([]);
 
     function onSubmit() {
-
+      this.errors = [];
+      if (username.value && password.value) {
+        this.$store.commit('credentials/setToken', 'test');
+        this.$router.push('/');
+      } else {
+        errors.value.push(this.$t('login.errors.usernamePasswordWrong'))
+      }
     }
 
     return {
       username,
       password,
+      errors,
       onSubmit
     }
   }

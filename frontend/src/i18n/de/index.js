@@ -59,7 +59,10 @@ export default {
     username: 'Nutzername',
     password: 'Passwort',
     send: 'Login',
-    register: 'Registrieren'
+    register: 'Registrieren',
+    errors: {
+      usernamePasswordWrong: 'Nutzername oder Passwort falsch.'
+    }
   },
   register: {
     title: 'Registrieren',
