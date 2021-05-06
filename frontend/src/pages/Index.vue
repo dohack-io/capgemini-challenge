@@ -1,11 +1,20 @@
 <template>
   <q-page padding>
-    <q-card class="my-card q-ma-md q-pa-md">
-      <q-linear-progress size="25px" :value="progress" color="primary" @click="randomize" label="Change Model">
-        <div class="absolute-full flex flex-center">
-          <q-badge color="white" text-color="black" :label="progressLabel" />
-        </div>
-      </q-linear-progress>
+    <q-card class="my-card q-ma-md">
+      <q-card-section>
+        <div class="text-h6">Next Level</div>
+        <q-linear-progress
+          size="25px"
+          :value="progress"
+          color="secondary"
+          @click="randomize"
+          label="Change Model"
+        >
+          <div class="absolute-full flex flex-center">
+            <q-badge color="white" text-color="black" :label="progressLabel" />
+          </div>
+        </q-linear-progress>
+      </q-card-section>
     </q-card>
     <q-card class="my-card q-ma-md q-pa-md">
       <q-timeline color="secondary">
@@ -14,32 +23,50 @@
         </q-timeline-entry>
         <q-timeline-entry title="Event Title" subtitle="06.05.2020">
           <div>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat.
           </div>
         </q-timeline-entry>
         <q-timeline-entry title="Event Title" subtitle="05.05.2020">
           <div>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat.
           </div>
         </q-timeline-entry>
         <q-timeline-entry title="Event Title" subtitle="04.05.2020">
           <div>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat.
           </div>
         </q-timeline-entry>
         <q-timeline-entry title="Event Title" subtitle="03.05.2020">
           <div>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat.
           </div>
         </q-timeline-entry>
         <q-timeline-entry title="Event Title" subtitle="02.05.2020">
           <div>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat.
           </div>
         </q-timeline-entry>
         <q-timeline-entry title="Event Title" subtitle="01.05.2020">
           <div>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat.
           </div>
         </q-timeline-entry>
       </q-timeline>

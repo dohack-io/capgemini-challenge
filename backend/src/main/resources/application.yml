@@ -7,8 +7,9 @@ spring:
   h2:
     console:
       enabled: true
+
 cors:
-  origin: "localhost:8080"
+  origin: "localhost:8081"
 
 graphql:
     servlet:
