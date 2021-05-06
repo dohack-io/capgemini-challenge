@@ -5,13 +5,28 @@ export default {
     activities: "Aktivitäten",
     next_level: "Nächstes Level"
   },
+  dailyChallengesView: {
+    title: 'Daily Challenge',
+    description: 'Beschreibung',
+    points: 'Punkte',
+    sending: {
+      error: 'Fehler beim Abrufen der aktuellen Daily Challenge.'
+    }
+  },
   userStatisticsForm: {
     title: "Statistik eintragen",
     coffee: {
       label: "Anzahl Kaffee"
     },
-    lunch: {
-      label: "Mittagessen"
+    food: {
+      title: 'Lunch-Sore',
+      weight: 'Gewicht (g)',
+      type: 'Zutat',
+      add: 'Zutat hinzufügen',
+      score: 'Score'
+    },
+    dailyChallenge: {
+      label: 'Daily Challenge geschafft'
     },
     commuteInput: {
       title: "Pendelfahrt {index} angeben",
@@ -21,7 +36,11 @@ export default {
       commuteDistance: {
         label: "Distanz"
       },
-      add: "Pendelfahrt hinzufügen"
+      add: 'Pendelfahrt hinzufügen'
+    },
+    sending: {
+      success: 'Erfolgreich abgesendet.',
+      error: 'Beim Absenden ist ein Fehler aufgetreten.'
     }
   },
   userSettings: {
@@ -57,6 +76,22 @@ export default {
     escooter: "E-Scooter",
     ecar: "Elektroauto",
     hybridcar: "Hybridauto"
+  },
+  foodType: {
+    beef: 'Rind',
+    pig: 'Schwein',
+    chicken: 'Geflügel',
+    lamb: 'Lamm',
+    fish: 'Fisch',
+    rice: 'Reis',
+    noodles: 'Nudeln',
+    fries: 'Pommes',
+    butter: 'Butter',
+    creme: 'Sahne',
+    milk: 'Milch',
+    potatoes: 'Kartoffeln',
+    lentil: 'Linsen',
+    oatmeal: 'Haferflocken'
   },
   login: {
     title: "Login",

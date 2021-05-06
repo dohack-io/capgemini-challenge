@@ -12,6 +12,7 @@ const routes = [
       { path: '', component: () => import('pages/Index.vue'), meta: { requiresAuth: true } },
       { path: 'statistics/form', component: () => import('pages/UserStatisticsForm.vue'), meta: { requiresAuth: true } },
       { path: 'user-settings', component: () => import('pages/UserSettings.vue'), meta: { requiresAuth: true } },
+      { path: 'daily-challenge', component: () => import('pages/DailyChallengesView.vue'), meta: { requiresAuth: true } },
       { path: 'login', component: () => import('pages/Login.vue'), meta: { requiresAuth: false } },
       { path: 'register', component: () => import('pages/Register.vue'), meta: { requiresAuth: false } },
     ]

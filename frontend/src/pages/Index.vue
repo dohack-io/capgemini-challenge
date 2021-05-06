@@ -120,7 +120,10 @@ export default {
     }
   },
   async mounted() {
-    // Fetch data
+    const challenges = await fetch('http://localhost:8081/challenge/all');
+    for (let challenge in challenges) {
+      alert(challenge);
+    }
   }
 };
 </script>

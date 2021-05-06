@@ -31,6 +31,7 @@
       <q-tabs class="text-dark bg-white">
         <q-route-tab icon="home" to="/" />
         <q-route-tab icon="edit" to="/statistics/form" />
+        <q-route-tab icon="today" to="/daily-challenge"/>
       </q-tabs>
     </q-footer>
   </q-layout>
@@ -65,7 +66,10 @@ export default {
     }
   },
   mounted() {
-    Dark.set(localStorage.getItem("darkMode") == "true");
+    if (!this.$store.getters["credentials/isAuthenticated"]) {
+      this.$router.push('/login');
+    }
+    Dark.set(localStorage.getItem('darkMode') == 'true');
   }
 };
 </script>
