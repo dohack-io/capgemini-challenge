@@ -24,7 +24,7 @@
       <q-card-section>
         <q-timeline color="secondary">
           <q-timeline-entry heading>
-            {{ $t("index.activities") }}
+            <div class="text-h5">{{ $t("index.activities") }}</div>
           </q-timeline-entry>
 
           <q-timeline-entry v-for="(entry, index) in challengeList" :title="entry.title" :subtitle="entry.date"
