@@ -1,8 +1,8 @@
 <template>
   <q-page padding>
-    <q-card class="my-card q-ma-md">
+    <q-card class="my-card">
       <q-card-section>
-        <div class="text-h6">Next Level</div>
+        <div class="text-h6">{{ $t("index.next_level") }}</div>
         <q-linear-progress
           size="25px"
           :value="progress"
@@ -16,10 +16,10 @@
         </q-linear-progress>
       </q-card-section>
     </q-card>
-    <q-card class="my-card q-ma-md q-pa-md">
+    <q-card class="my-card">
       <q-timeline color="secondary">
         <q-timeline-entry heading>
-          {{ $t('index.activities') }}
+          {{ $t("index.activities") }}
         </q-timeline-entry>
         <q-timeline-entry title="Event Title" subtitle="06.05.2020">
           <div>
