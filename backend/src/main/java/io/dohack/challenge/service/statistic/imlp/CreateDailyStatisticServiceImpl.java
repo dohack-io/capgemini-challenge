@@ -35,7 +35,9 @@ public class CreateDailyStatisticServiceImpl implements CreateDailyStatisticServ
                     .energyConsumption(mockedSensorValue.isPresent() ? mockedSensorValue.get().getValue() : 100)
                     .lunchScore(dto.getLunchScore())
                     .dailyChallengePoints(dailyChallenge.isPresent() ? dailyChallenge.get().getChallengePoints() : 0.0)
-                    .commuteList(dto.getDailyCommuteList().stream().map( createDailyCommuteDto -> new Commute(null, createDailyCommuteDto.getDistance(), createDailyCommuteDto.getType())).collect(Collectors.toList()))
+                    .commuteList(dto.getDailyCommuteList().stream().map( createDailyCommuteDto -> new Commute(null,
+                            createDailyCommuteDto.getDistance(), getTypeFromString(createDailyCommuteDto.getType(),
+                            user.get()))).collect(Collectors.toList()))
                     .build();
             statistics.setPointsEarned(calculateScore(statistics));
             user.get().getUserDailyStatisticsList().add(statistics);
@@ -53,5 +55,35 @@ public class CreateDailyStatisticServiceImpl implements CreateDailyStatisticServ
                         .map(commute -> (commute.getType().value * commute.getDistance() / 100))
                         .reduce(0.0, Double::sum) +
                 statistics.getDailyChallengePoints();
+    }
+
+    private CommuteType getTypeFromString(String type, User user) {
+        CommuteType result = null;
+        switch (type) {
+            case "WALKING":  result = CommuteType.WALKING;
+                break;
+            case "BIKE":  result = CommuteType.BIKE;
+                break;
+            case "CAR":  result = CommuteType.CAR;
+                break;
+            case "CAR_POOL":  result = CommuteType.CAR_POOL;
+                break;
+            case "BUS":  result = CommuteType.BUS;
+                break;
+            case "TRAM":  result = CommuteType.TRAM;
+                break;
+            case "PLANE":  result = CommuteType.PLANE;
+                break;
+            case "E_BIKE":  result = CommuteType.E_BIKE;
+                break;
+            case "E_SCOOTER":  result = CommuteType.E_SCOOTER;
+                break;
+            case "E_CAR":  result = CommuteType.E_CAR;
+                break;
+            case "HYBRID_CAR":  result = CommuteType.HYBRID_CAR;
+                break;
+            default: result = user.getDefaultCommuteType();
+        }
+        return result;
     }
 }
