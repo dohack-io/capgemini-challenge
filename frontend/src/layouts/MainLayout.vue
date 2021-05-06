@@ -21,6 +21,7 @@
       <q-tabs>
         <q-route-tab icon="home" to="/"/>
         <q-route-tab icon="edit" to="/statistics/form"/>
+        <q-route-tab icon="today" to="/daily-challenge"/>
         <q-route-tab icon="settings" to="/user-settings"/>
       </q-tabs>
     </q-footer>

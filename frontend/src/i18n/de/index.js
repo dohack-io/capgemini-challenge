@@ -4,13 +4,25 @@ export default {
   index: {
     activities: 'Aktivitäten'
   },
+  dailyChallengesView: {
+    title: 'Daily Challenge',
+    description: 'Beschreibung',
+    points: 'Punkte',
+    sending: {
+      error: 'Fehler beim Abrufen der aktuellen Daily Challenge.'
+    }
+  },
   userStatisticsForm: {
     title: 'Statistik eintragen',
     coffee: {
       label: 'Anzahl Kaffee'
     },
     lunch: {
-      label: 'Mittagessen'
+      label: 'Lunch-Score',
+      hint: ''
+    },
+    dailyChallenge: {
+      label: 'Daily Challenge geschafft'
     },
     commuteInput: {
       title: 'Pendelfahrt {index} angeben',
