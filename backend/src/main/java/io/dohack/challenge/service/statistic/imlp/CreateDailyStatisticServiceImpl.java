@@ -4,7 +4,6 @@ import io.dohack.challenge.domain.*;
 import io.dohack.challenge.dto.CreateDailyStatisticDto;
 import io.dohack.challenge.repositories.DailyChallengeRepository;
 import io.dohack.challenge.repositories.MockedSensorValueRepository;
-import io.dohack.challenge.repositories.UserDailyStatisticsRepository;
 import io.dohack.challenge.repositories.UserRepository;
 import io.dohack.challenge.service.statistic.CreateDailyStatisticService;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +19,9 @@ public class CreateDailyStatisticServiceImpl implements CreateDailyStatisticServ
     private final DailyChallengeRepository dailyChallengeRepository;
     private final UserRepository userRepository;
     private final MockedSensorValueRepository mockedSensorValueRepository;
+
+    private static final int GROUND_SCORE = 50;
+
     @Override
     public UserDailyStatistics createUserDailyStatistic(CreateDailyStatisticDto dto) {
         Optional<User> user = userRepository.findById(dto.getUsername());
@@ -43,6 +45,13 @@ public class CreateDailyStatisticServiceImpl implements CreateDailyStatisticServ
     }
 
     private Double calculateScore(UserDailyStatistics statistics) {
-        return 0.;
+        return GROUND_SCORE +
+                (statistics.getNumberOfCoffees() * -2) +
+                (statistics.getEnergyConsumption() * -2) +
+                (statistics.getLunchScore() * -3) +
+                statistics.getCommuteList().stream()
+                        .map(commute -> (commute.getType().value * commute.getDistance() / 100))
+                        .reduce(0.0, Double::sum) +
+                statistics.getDailyChallengePoints();
     }
 }
