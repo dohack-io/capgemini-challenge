@@ -43,8 +43,12 @@
 
     <div class="row q-mt-lg">
       <q-btn unelevated tile outline :label="$t('userSettings.cancel')" @click="$router.push('/')" color="primary" class="q-mr-sm"/>
-      <q-btn unelevated tile :label="$t('userSettings.send')" type="submit" color="primary"/>
+      <q-btn unelevated tile :label="$t('userSettings.send')" @click="saveSettings()" type="submit" color="primary"/>
     </div>
+
+    <q-inner-loading :showing="visible">
+      <q-spinner-gears size="50px" color="primary" />
+    </q-inner-loading>
   </q-page>
 </template>
 
@@ -66,7 +70,26 @@ export default {
       seat,
       defaultCommuteDistance,
       defaultCommuteType,
-      commuteTypes
+      commuteTypes,
+      visible: false
+    }
+  },
+  mounted() {
+    let data = JSON.parse(localStorage.getItem('data'));
+    this.email = data?.email ?? '';
+    this.displayName = data?.displayName ?? '';
+    this.seat = data?.seat ?? '';
+    this.defaultCommuteDistance = data?.defaultCommuteDistance ?? undefined;
+    this.defaultCommuteType = data?.defaultCommuteType ?? undefined;
+  },
+  methods: {
+    saveSettings() {
+      this.visible = true;
+      localStorage.setItem('data', JSON.stringify(this.$data));
+      setTimeout(() => {
+        this.visible = false;
+        this.$router.push('/');
+      }, 1000);
     }
   }
 }
