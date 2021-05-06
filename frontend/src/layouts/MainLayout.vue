@@ -2,22 +2,23 @@
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
       <q-toolbar>
-        <q-toolbar-title>
-          Green Leaf
-        </q-toolbar-title>
+        <q-icon name="fas fa-leaf" size="28px" color="accent" />
 
         <q-space />
 
         <q-toggle
           v-model="darkMode"
           icon="dark_mode"
+          color="accent"
           unchecked-icon="light_mode"
           @input="toggleDarkMode()"
         />
+        <q-btn flat icon="settings" color="secondary" to="/user-settings" />
         <q-btn
-          unelevated
+          flat
           v-if="$store.getters['credentials/isAuthenticated']"
           icon="logout"
+          color="secondary"
           @click="logout"
         />
       </q-toolbar>
@@ -28,10 +29,9 @@
     </q-page-container>
 
     <q-footer>
-      <q-tabs>
+      <q-tabs class="text-secondary">
         <q-route-tab icon="home" to="/" />
         <q-route-tab icon="edit" to="/statistics/form" />
-        <q-route-tab icon="settings" to="/user-settings" />
       </q-tabs>
     </q-footer>
   </q-layout>
