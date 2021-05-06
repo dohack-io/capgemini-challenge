@@ -22,6 +22,10 @@ export default {
       },
       add: 'Pendelfahrt hinzufügen'
     },
+    sending: {
+      success: 'Erfolgreich abgesendet.',
+      error: 'Beim Absenden ist ein Fehler aufgetreten.'
+    }
   },
   userSettings: {
     title: 'Einstellungen',

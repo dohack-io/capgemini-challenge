@@ -49,6 +49,9 @@ export default {
     }
   },
   mounted() {
+    if (!this.$store.getters["credentials/isAuthenticated"]) {
+      this.$router.push('/login');
+    }
     Dark.set(localStorage.getItem('darkMode') == 'true');
   }
 }

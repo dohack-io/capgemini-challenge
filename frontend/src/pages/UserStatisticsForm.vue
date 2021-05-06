@@ -1,6 +1,18 @@
 <template>
   <q-page class="q-ma-md">
-    <q-form ref="myForm" @submit="onSubmit">
+    <q-inner-loading v-if="sendStatus === 'sending'">
+      <q-spinner-gears size="50px" color="primary" />
+    </q-inner-loading>
+
+    <q-banner class="bg-positive text-white" v-if="sendStatus === 'send'">
+      {{ $t('userStatisticsForm.sending.success') }}
+    </q-banner>
+
+    <q-banner class="bg-negative text-white" v-if="sendStatus === 'error'">
+      {{ $t('userStatisticsForm.sending.error') }}
+    </q-banner>
+
+    <q-form ref="myForm" @submit="onSubmit" v-if="sendStatus === 'unsend'">
       <div class="text-h4">{{ $t('userStatisticsForm.title') }}</div>
 
       <div class="row q-mt-lg">
@@ -79,8 +91,9 @@ export default {
     const coffee = undefined;
     const lunch = '';
     const commutions = ref([]);
+    let sendStatus = 'unsend';
 
-    function addToCommutions() {
+    const addToCommutions = function() {
       commutions.value.push({commuteType: undefined, commuteDistance: undefined});
     }
 
@@ -88,18 +101,43 @@ export default {
       commutions.value.splice(index, 1);
     }
 
-    function onSubmit() {
-      // POST statistics/daily/create
-    }
-
     return {
       coffee,
       lunch,
       commutions,
+      sendStatus,
       commuteTypes,
       addToCommutions,
-      removeFromCommutions,
-      onSubmit
+      removeFromCommutions
+    }
+  },
+  methods: {
+    onSubmit: async function () {
+      this.sendStatus = 'sending';
+      const username = this.$store.getters["credentials/getUsername"];
+      const sendResult = await fetch('http://localhost:8081/statistics/daily/create', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=UTF-8',
+        },
+        body: JSON.stringify({
+          username: username,
+          numberOfCoffees: this.coffee,
+          lunchScore: 5,
+          dailyChallengeCompleted: true,
+          dailyCommuteList: this.commutions.value.map(commute => {
+            return {
+              distance: commute.commuteDistance,
+              type: commute.commuteType.value
+            }
+          })
+        })
+      });
+      if (sendResult.ok) {
+        this.sendStatus = 'send';
+      } else {
+        this.sendStatus = 'error';
+      }
     }
   }
 }
