@@ -45,7 +45,11 @@ export default {
   methods: {
     toggleDarkMode() {
       Dark.toggle();
+      localStorage.setItem('darkMode', Dark.isActive);
     }
+  },
+  mounted() {
+    Dark.set(localStorage.getItem('darkMode') == 'true');
   }
 }
 </script>
