@@ -10,6 +10,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CreateDailyStatisticDto {
+    private String username;
     private Integer numberOfCoffees;
     private Double lunchScore;
     private Boolean dailyChallengeCompleted;

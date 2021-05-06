@@ -21,8 +21,8 @@ public class CreateDailyStatisticServiceImpl implements CreateDailyStatisticServ
     private final UserRepository userRepository;
     private final MockedSensorValueRepository mockedSensorValueRepository;
     @Override
-    public UserDailyStatistics createUserDailyStatistic(String username, CreateDailyStatisticDto dto) {
-        Optional<User> user = userRepository.findById(username);
+    public UserDailyStatistics createUserDailyStatistic(CreateDailyStatisticDto dto) {
+        Optional<User> user = userRepository.findById(dto.getUsername());
         if (user.isPresent()) {
             Optional<MockedSensorValue> mockedSensorValue = mockedSensorValueRepository.findById(user.get().getSeat());
             Optional<DailyChallenge> dailyChallenge = dailyChallengeRepository.findByDate(LocalDate.now());
