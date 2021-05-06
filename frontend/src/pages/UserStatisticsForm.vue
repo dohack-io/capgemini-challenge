@@ -1,6 +1,6 @@
 <template>
   <q-page class="q-ma-md">
-    <div class="text-h2">{{ $t('userStatisticsForm.title') }}</div>
+    <div class="text-h4">{{ $t('userStatisticsForm.title') }}</div>
 
     <div class="row q-mt-lg">
       <q-icon class="col-2" name="local_cafe" size="lg"/>
@@ -17,7 +17,7 @@
 
       <q-card>
         <q-card-section>
-          <div class="text-h4">{{ $t('userStatisticsForm.commuteInput.title', {index: `${index + 1}`}) }}</div>
+          <div class="text-h5">{{ $t('userStatisticsForm.commuteInput.title', {index: `${index + 1}`}) }}</div>
         </q-card-section>
 
         <q-card-section>
@@ -49,7 +49,7 @@
             <q-icon class="col-2" name="local_cafe" size="lg"/>
 
             <q-input class="col" outlined type="number" :label="$t('userStatisticsForm.commuteInput.commuteDistance.label')"
-                     v-model="commution.commuteDistance"/>
+                     v-model.number="commution.commuteDistance"/>
           </div>
         </q-card-section>
       </q-card>
@@ -58,6 +58,11 @@
     <div class="row q-mt-lg">
       <q-btn unelevated tile color="primary" v-on:click="addToCommutions" :label="$t('userStatisticsForm.commuteInput.add')"
              class="cat-button"/>
+    </div>
+
+    <div class="row q-mt-lg">
+      <q-btn unelevated tile outline :label="$t('userSettings.cancel')" @click="$router.push('/')" color="primary" class="q-mr-sm"/>
+      <q-btn unelevated tile :label="$t('userSettings.send')" type="submit" color="primary"/>
     </div>
   </q-page>
 </template>

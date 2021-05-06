@@ -20,6 +20,26 @@ export default {
       add: 'Pendelfahrt hinzufügen'
     },
   },
+  userSettings: {
+    title: 'Einstellungen',
+    send: 'Speichern',
+    cancel: 'Abbrechen',
+    email: {
+      label: 'E-Mail-Adresse',
+    },
+    displayName: {
+      label: 'Anzeigename'
+    },
+    seat: {
+      label: 'Sitzplatz'
+    },
+    defaultCommuteType: {
+      label: 'Standardfortbewegungsmittel'
+    },
+    defaultCommuteDistance: {
+      label: 'Standarddistanz'
+    }
+  },
   commuteType: {
     walking: 'Laufen',
     bike: 'Fahrrad',
