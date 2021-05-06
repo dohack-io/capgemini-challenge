@@ -9,7 +9,7 @@
         <q-toggle
           v-model="darkMode"
           icon="dark_mode"
-          color="primary"
+          color="secondary"
           unchecked-icon="light_mode"
           @input="toggleDarkMode()"
         />
