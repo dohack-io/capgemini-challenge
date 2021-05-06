@@ -8,6 +8,7 @@
 
         <q-space/>
 
+        <q-btn unelevated icon="dark_mode" @click="toggleDarkMode()"/>
         <q-btn unelevated v-if="$store.getters['credentials/isAuthenticated']" icon="logout" @click="logout"/>
       </q-toolbar>
     </q-header>
@@ -27,6 +28,8 @@
 </template>
 
 <script>
+import { Dark } from 'quasar';
+
 export default {
   name: 'MainLayout',
   setup () {
@@ -37,6 +40,11 @@ export default {
 
     return {
       logout
+    }
+  },
+  methods: {
+    toggleDarkMode() {
+      Dark.toggle();
     }
   }
 }
