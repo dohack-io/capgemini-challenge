@@ -38,8 +38,16 @@ export default {
     async function onSubmit() {
       this.errors = [];
       if (username.value && password.value) {
-        this.$store.commit('credentials/setUsername', username.value);
-        this.$router.push('/');
+        const loginResult = await fetch(
+          `http://localhost:8081/login?username=${username.value}&password=${password.value}`, {
+            method: 'POST'
+          });
+        if (loginResult.ok) {
+          this.$store.commit('credentials/setUsername', username.value);
+          this.$router.push('/');
+        } else {
+          errors.value.push(this.$t('login.errors.usernamePasswordWrong'))
+        }
       } else {
         errors.value.push(this.$t('login.errors.noUsernamePassword'));
       }
