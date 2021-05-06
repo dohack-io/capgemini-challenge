@@ -26,7 +26,6 @@ public class UserStatisticsController {
         return readDailyStatisticsService.readTodayStatisticForUser(username);
     }
 
-
     @GetMapping("statistics/daily/{username}/all")
     List<UserDailyStatistics> getAllDailyStatistic(@PathVariable("username") String username) {
         return readDailyStatisticsService.readAllDailyStatisticsForUser(username);
