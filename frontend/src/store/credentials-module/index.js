@@ -12,8 +12,11 @@ export default {
     }
   },
   mutations: {
-    setCognitoId (state, jwtToken) {
+    setToken (state, jwtToken) {
       state.jwtToken = jwtToken;
+    },
+    clearToken (state) {
+      state.jwtToken = undefined;
     }
   },
   actions: {

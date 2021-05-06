@@ -5,6 +5,10 @@
         <q-toolbar-title>
           Green Leaf
         </q-toolbar-title>
+
+        <q-space/>
+
+        <q-btn unelevated v-if="$store.getters['credentials/isAuthenticated']" icon="logout" @click="logout"/>
       </q-toolbar>
     </q-header>
 
@@ -25,8 +29,14 @@
 <script>
 export default {
   name: 'MainLayout',
-  data () {
+  setup () {
+    function logout() {
+      this.$store.commit("credentials/clearToken");
+      this.$router.push('/login');
+    }
+
     return {
+      logout
     }
   }
 }
