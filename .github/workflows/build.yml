@@ -2,6 +2,7 @@ name: Build
 on: [push]
 jobs:
   build:
+    environment: prod
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout
