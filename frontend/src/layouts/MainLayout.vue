@@ -28,7 +28,7 @@
     </q-page-container>
 
     <q-footer>
-      <q-tabs class="text-dark bg-white">
+      <q-tabs class="text-dark bg-white shadow-2">
         <q-route-tab icon="home" to="/" />
         <q-route-tab icon="edit" to="/statistics/form" />
         <q-route-tab icon="today" to="/daily-challenge"/>
