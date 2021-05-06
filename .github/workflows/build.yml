@@ -13,10 +13,11 @@ jobs:
           cd backend
           chmod +x ./gradlew
           ./gradlew build
-          cd ../frontend
-      - uses: borales/actions-yarn@v2.0.0
+      - uses: actions/setup-node@v2
         with:
-          cmd: install
-      - uses: borales/actions-yarn@v2.0.0
-        with:
-          cmd: simpleBuild
+          node-version: '14'
+      - run: |
+          cd frontend
+          npm install --global yarn
+          yarn install
+          yarn simpleBuild
