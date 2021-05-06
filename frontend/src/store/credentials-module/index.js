@@ -1,22 +1,22 @@
 export default {
   namespaced: true,
   state: {
-    jwtToken: String
+    username: String
   },
   getters: {
-    getToken (state) {
-      return state.jwtToken;
+    getUsername (state) {
+      return state.username;
     },
     isAuthenticated (state) {
-      return !!state.jwtToken;
+      return !!state.username;
     }
   },
   mutations: {
-    setToken (state, jwtToken) {
-      state.jwtToken = jwtToken;
+    setUsername (state, username) {
+      state.username = username;
     },
-    clearToken (state) {
-      state.jwtToken = undefined;
+    clearUsername (state) {
+      state.username = undefined;
     }
   },
   actions: {

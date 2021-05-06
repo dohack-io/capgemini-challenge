@@ -34,7 +34,7 @@ export default {
   name: 'MainLayout',
   setup () {
     function logout() {
-      this.$store.commit("credentials/clearToken");
+      this.$store.commit("credentials/clearUsername");
       this.$router.push('/login');
     }
 

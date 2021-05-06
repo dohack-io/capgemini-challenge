@@ -61,7 +61,8 @@ export default {
     send: 'Login',
     register: 'Registrieren',
     errors: {
-      usernamePasswordWrong: 'Nutzername oder Passwort falsch.'
+      usernamePasswordWrong: 'Nutzername oder Passwort falsch.',
+      noUsernamePassword: 'Nutzername und Passwort müssen angegeben werden.'
     }
   },
   register: {
