@@ -21,6 +21,8 @@ public class DailyChallenge {
     @GeneratedValue
     private Long id;
 
+    private String title;
+
     private String description;
 
     private LocalDate date;

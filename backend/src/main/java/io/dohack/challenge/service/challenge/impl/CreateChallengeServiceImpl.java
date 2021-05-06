@@ -16,7 +16,7 @@ public class CreateChallengeServiceImpl implements CreateChallengeService {
     @Override
     public DailyChallenge createDailyChallenge(CreateChallengeDto dto) {
         DailyChallenge dailyChallenge = new DailyChallenge(
-                null, dto.getDescription(), dto.getDate(), dto.getChallengePoints()
+                null, dto.getTitle(), dto.getDescription(), dto.getDate(), dto.getChallengePoints()
         );
         return dailyChallengeRepository.save(dailyChallenge);
     }
