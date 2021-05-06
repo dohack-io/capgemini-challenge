@@ -6,10 +6,20 @@
           Green Leaf
         </q-toolbar-title>
 
-        <q-space/>
+        <q-space />
 
-        <q-btn unelevated icon="dark_mode" @click="toggleDarkMode()"/>
-        <q-btn unelevated v-if="$store.getters['credentials/isAuthenticated']" icon="logout" @click="logout"/>
+        <q-toggle
+          v-model="darkMode"
+          icon="dark_mode"
+          unchecked-icon="light_mode"
+          @input="toggleDarkMode()"
+        />
+        <q-btn
+          unelevated
+          v-if="$store.getters['credentials/isAuthenticated']"
+          icon="logout"
+          @click="logout"
+        />
       </q-toolbar>
     </q-header>
 
@@ -19,37 +29,44 @@
 
     <q-footer>
       <q-tabs>
-        <q-route-tab icon="home" to="/"/>
-        <q-route-tab icon="edit" to="/statistics/form"/>
-        <q-route-tab icon="settings" to="/user-settings"/>
+        <q-route-tab icon="home" to="/" />
+        <q-route-tab icon="edit" to="/statistics/form" />
+        <q-route-tab icon="settings" to="/user-settings" />
       </q-tabs>
     </q-footer>
   </q-layout>
 </template>
 
 <script>
-import { Dark } from 'quasar';
+import { Dark } from "quasar";
 
 export default {
-  name: 'MainLayout',
-  setup () {
+  name: "MainLayout",
+  setup() {
     function logout() {
       this.$store.commit("credentials/clearUsername");
-      this.$router.push('/login');
+      this.$router.push("/login");
     }
 
     return {
       logout
-    }
+    };
+  },
+  data() {
+    const darkMode = Dark.isActive;
+
+    return {
+      darkMode
+    };
   },
   methods: {
     toggleDarkMode() {
       Dark.toggle();
-      localStorage.setItem('darkMode', Dark.isActive);
+      localStorage.setItem("darkMode", Dark.isActive);
     }
   },
   mounted() {
-    Dark.set(localStorage.getItem('darkMode') == 'true');
+    Dark.set(localStorage.getItem("darkMode") == "true");
   }
-}
+};
 </script>
