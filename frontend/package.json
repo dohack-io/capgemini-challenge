@@ -2,7 +2,7 @@
   "name": "frontend",
   "version": "0.0.1",
   "description": "A Quasar Framework app",
-  "productName": "capgemini-challenge",
+  "productName": "Green Leaf",
   "author": "johannes.teklote001@stud.fh-dortmund.de,christoph.weinzierl012@stud.fh-dortmund.de",
   "private": true,
   "scripts": {
