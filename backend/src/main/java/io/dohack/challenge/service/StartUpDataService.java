@@ -104,7 +104,7 @@ public class StartUpDataService implements ApplicationListener<ApplicationReadyE
         dailyChallengeRepository.save(
                 new DailyChallenge(
                         null,
-                        "",
+                        "Mit Rad zu Arbeit gefahren",
                         LocalDate.of(2021, 5, 4),
                         10.
                 )
@@ -112,7 +112,7 @@ public class StartUpDataService implements ApplicationListener<ApplicationReadyE
         dailyChallengeRepository.save(
                 new DailyChallenge(
                         null,
-                        "",
+                        "Heute nur 10 Tassen Kaffee getrunken",
                         LocalDate.of(2021, 5, 5),
                         10.
                 )
@@ -120,7 +120,7 @@ public class StartUpDataService implements ApplicationListener<ApplicationReadyE
         dailyChallengeRepository.save(
                 new DailyChallenge(
                         null,
-                        "",
+                        "Keinen Kilometer CO2-Austoß",
                         LocalDate.of(2021, 5, 6),
                         10.
                 )
@@ -128,7 +128,7 @@ public class StartUpDataService implements ApplicationListener<ApplicationReadyE
         dailyChallengeRepository.save(
                 new DailyChallenge(
                         null,
-                        "",
+                        "Komme heute nur mit einem Bildschirm aus!",
                         LocalDate.of(2021, 5, 7),
                         10.
                 )
@@ -136,7 +136,7 @@ public class StartUpDataService implements ApplicationListener<ApplicationReadyE
         dailyChallengeRepository.save(
                 new DailyChallenge(
                         null,
-                        "",
+                        "Denke nach bevor du googlest!",
                         LocalDate.of(2021, 5, 8),
                         10.
                 )
