@@ -19,19 +19,19 @@ public class ReadDailyStatisticsServiceImpl implements ReadDailyStatisticsServic
     private final UserRepository userRepository;
 
     @Override
-    public UserDailyStatistics readTodayStatisticForUser(String username) {
+    public Optional<UserDailyStatistics> readTodayStatisticForUser(String username) {
         Optional<User> user = userRepository.findById(username);
         if (user.isPresent()) {
             List<UserDailyStatistics> statistics = user.get().getUserDailyStatisticsList().stream()
                     .filter( it -> it.getDay().equals(LocalDate.now()))
                     .collect(Collectors.toList());
             if (statistics.isEmpty()) {
-                return null;
+                return Optional.empty();
             } else {
-                return statistics.get(0);
+                return Optional.of(statistics.get(0));
             }
         }
-        return null;
+        return Optional.empty();
     }
 
     @Override
