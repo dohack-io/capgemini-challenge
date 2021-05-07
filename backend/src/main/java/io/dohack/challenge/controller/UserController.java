@@ -17,6 +17,10 @@ public class UserController {
 
     @GetMapping("/user/{username}")
     Optional<User> getUserForUsername(@PathVariable("username") String username) {
-        return readUserService.readUserForUsername(username);
+        Optional<User> user = readUserService.readUserForUsername(username);
+        if (user.isPresent()) {
+            return user;
+        }
+        throw new ResourceNotFoundException();
     }
 }

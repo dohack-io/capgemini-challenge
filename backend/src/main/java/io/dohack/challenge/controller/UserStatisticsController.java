@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
@@ -22,8 +23,13 @@ public class UserStatisticsController {
     }
 
     @GetMapping("statistics/daily/{username}/current")
-    UserDailyStatistics getTodayDailyStatistic(@PathVariable("username") String username) {
-        return readDailyStatisticsService.readTodayStatisticForUser(username);
+    Optional<UserDailyStatistics> getTodayDailyStatistic(@PathVariable("username") String username) {
+        Optional<UserDailyStatistics> userDailyStatistics = readDailyStatisticsService.readTodayStatisticForUser(username);
+        if (userDailyStatistics.isPresent()) {
+            return userDailyStatistics;
+        }
+        throw new ResourceNotFoundException();
+
     }
 
     @GetMapping("statistics/daily/{username}/all")
