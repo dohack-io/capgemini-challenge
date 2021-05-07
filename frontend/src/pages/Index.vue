@@ -22,7 +22,7 @@
       <q-spinner-gears size="50px" color="primary" />
     </q-inner-loading>
 
-    <q-banner class="bg-negative text-white" v-if="requestStatus === 'error'">
+    <q-banner class="bg-negative text-white" v-if="statisticsStatus === 'error'">
       {{ $t("index.sending.error") }}
     </q-banner>
 
@@ -36,6 +36,7 @@
             <q-item-section avatar>
               <q-icon color="primary" name="fas fa-tree" />
             </q-item-section>
+
             <q-item-section>
               <q-item-label>Green Power</q-item-label>
             </q-item-section>
@@ -46,11 +47,13 @@
               <q-item-label>Heute: {{ latestCo2Rounded }}kg CO²</q-item-label>
             </q-item-section>
           </q-item>
+
           <q-item clickable>
             <q-item-section>
-              <q-item-label>Gesamt: {{ allCo2Rounded }}kg CO²</q-item-label>
+              <q-item-label>Gesamt: {{ allCo2Rounded.toFixed(2) }}kg CO²</q-item-label>
             </q-item-section>
           </q-item>
+
           <q-item clickable>
             <q-item-section>
               <q-item-label>Bäume geplanzt: {{ savedTrees }}</q-item-label>
@@ -58,6 +61,7 @@
           </q-item>
         </q-list>
       </q-card>
+
       <q-card class="my-tile">
         <q-list>
           <q-item clickable>
@@ -68,6 +72,7 @@
               <q-item-label>Awards</q-item-label>
             </q-item-section>
           </q-item>
+
           <q-item clickable>
             <q-item-section>
               <q-item-label
@@ -76,14 +81,16 @@
               /></q-item-label>
             </q-item-section>
           </q-item>
+
           <q-item clickable>
             <q-item-section>
-              <q-item-label>Geschafft: {{ allChallengesSolved }}</q-item-label>
+              <q-item-label>Geschafft: {{ allChallengesSolved.toFixed(2) }}</q-item-label>
             </q-item-section>
           </q-item>
         </q-list>
       </q-card>
     </div>
+
     <q-card
       v-if="requestStatus === 'success' && dailyChallenge"
       class="q-mt-lg"
@@ -114,7 +121,6 @@
 <script>
 import commuteTypes from "src/model/CommuteTypes";
 import {
-  getAllChallenges,
   getAllDailyChallenges,
   getCurrentDailyChallenge
 } from "src/services/backendService";
@@ -149,9 +155,9 @@ export default {
     progressLabel() {
       if (this.statisticsData && this.statisticsData.length > 0) {
         return (
-          this.statisticsData[statisticsData.length - 1].levelProgression +
+          this.statisticsData[this.statisticsData.length - 1].levelProgression +
           "/" +
-          this.statisticsData[statisticsData.length - 1].levelUpThreshold
+          this.statisticsData[this.statisticsData.length - 1].levelUpThreshold
         );
       }
       return 0;
@@ -159,8 +165,8 @@ export default {
     relativePoints() {
       if (this.statisticsData && this.statisticsData.length > 0) {
         return (
-          this.statisticsData[statisticsData.length - 1].levelProgression /
-          this.statisticsData[statisticsData.length - 1].levelUpThreshold
+          this.statisticsData[this.statisticsData.length - 1].levelProgression /
+          this.statisticsData[this.statisticsData.length - 1].levelUpThreshold
         );
       }
       return 0;
@@ -247,14 +253,8 @@ export default {
       this.statisticsStatus = "success";
     }
     if (statisticsResult.ok) {
-      try {
-        this.dailyChallenge = await statisticsResult.json();
-      } catch (e) {
-        this.dailyChallenge = undefined;
-      }
+      this.dailyChallenge = await statisticsResult.json();
       this.requestStatus = "success";
-    } else {
-      this.requestStatus = "error";
     }
   }
 };
