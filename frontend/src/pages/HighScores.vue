@@ -21,22 +21,13 @@
           </q-td>
 
           <q-td key="badges" :props="cellProperties">
-            <q-icon name="dinner_dining" size="sm" class="color-gold"/>
-            <q-icon name="fas fa-medal" size="xs" class="color-brass"/>
-            <q-icon name="fas fa-leaf" size="xs" class="color-silver"/>
-            <q-icon v-if="cellProperties.row.averageLunchScorePerMonth === 2" name="dinner_dining" size="sm" class="color-gold"/>
-            <q-icon v-if="cellProperties.row.averageLunchScorePerMonth === 4" name="dinner_dining" size="sm" class="color-silver"/>
-            <q-icon v-if="cellProperties.row.averageLunchScorePerMonth === 5" name="dinner_dining" size="sm" class="color-brass"/>
-            <q-icon v-if="cellProperties.row.averageCompletedChallengesPerMonth === 2" name="fas fa-medal" size="xs" class="color-gold"/>
-            <q-icon v-if="cellProperties.row.averageCompletedChallengesPerMonth === 4" name="fas fa-medal" size="xs" class="color-silver"/>
-            <q-icon v-if="cellProperties.row.averageCompletedChallengesPerMonth === 5" name="fas fa-medal" size="xs" class="color-brass"/>
-            <q-icon v-if="cellProperties.row.averCo2ScorePerMonth === 2" name="fas fa-leaf" size="xs" class="color-gold"/>
-            <q-icon v-if="cellProperties.row.averCo2ScorePerMonth === 4" name="fas fa-leaf" size="xs" class="color-silver"/>
-            <q-icon v-if="cellProperties.row.averCo2ScorePerMonth === 5" name="fas fa-leaf" size="xs" class="color-brass"/>
+            <q-icon v-if="Math.random() > 0.5" name="dinner_dining" size="sm" :class="getColorClass()"/>
+            <q-icon v-if="Math.random() > 0.5" name="fas fa-medal" size="xs" :class="getColorClass()"/>
+            <q-icon v-if="Math.random() > 0.5" name="fas fa-leaf" size="xs" :class="getColorClass()"/>
           </q-td>
 
           <q-td key="co2Score" :props="cellProperties">
-            {{ cellProperties.row.co2Score }}
+            {{ cellProperties.row.co2Score.toFixed(2) }}
           </q-td>
         </q-tr>
       </template>
@@ -70,6 +61,17 @@ export default {
       requestStatus,
       columns,
       pagination
+    }
+  },
+  methods: {
+    getColorClass: function () {
+      if (Math.random() > 0.8) {
+        return 'color-gold';
+      } else if (Math.random() > 0.4) {
+        return 'color-silver';
+      } else {
+        return 'color-brass';
+      }
     }
   },
   async mounted() {
