@@ -8,7 +8,7 @@ export default {
       return state.user ? state.user : JSON.parse(sessionStorage.getItem('user'));
     },
     isAuthenticated (state) {
-      return state.user && typeof state.user === 'string' ? true : !!sessionStorage.getItem('user');
+      return state.user && typeof state.user.username === 'string' ? true : !!sessionStorage.getItem('user');
     }
   },
   mutations: {
