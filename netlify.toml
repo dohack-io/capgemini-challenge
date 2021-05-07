@@ -7,10 +7,8 @@
   from = "/api/*"
   to = "http://capgemini-loadbalancer-1573441832.eu-central-1.elb.amazonaws.com:8081/:splat"
   status = 200
-  force = true
 
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
-  force = true
