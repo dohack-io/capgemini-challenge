@@ -47,6 +47,12 @@ public class CreateDailyStatisticServiceImpl implements CreateDailyStatisticServ
                             UserDailyStatistics::getCo2
                     ).average().orElse(-1)
             );
+            if (user.get().getLevelProgression() + user.get().getPoints().intValue() > user.get().getLevelUpThreshold()) {
+                user.get().setLevel(user.get().getLevel() + 1);
+                user.get().setLevelProgression(user.get().getLevelProgression() + user.get().getPoints().intValue() - user.get().getLevelUpThreshold());
+            } else {
+                user.get().setLevelProgression(user.get().getLevelProgression() + user.get().getPoints().intValue());
+            }
             userRepository.save(user.get());
         }
         return null;
