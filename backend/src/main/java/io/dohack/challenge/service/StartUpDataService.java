@@ -137,7 +137,8 @@ public class StartUpDataService implements ApplicationListener<ApplicationReadyE
                         "Heute Radln",
                         "Mit Rad zu Arbeit gefahren",
                         LocalDate.of(2021, 5, 4),
-                        10.
+                        10.,
+                        "https://images.unsplash.com/photo-1598711169429-4e0073636edf?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80"
                 )
         );
         dailyChallengeRepository.save(
@@ -146,7 +147,8 @@ public class StartUpDataService implements ApplicationListener<ApplicationReadyE
                         "Weniger Kaffee",
                         "Heute nur 10 Tassen Kaffee getrunken",
                         LocalDate.of(2021, 5, 5),
-                        10.
+                        10.,
+                        "https://images.unsplash.com/photo-1576169884631-382813d0090e?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y29mZmVlJTIwbGVzcyUyMGxlYXZlfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
                 )
         );
         dailyChallengeRepository.save(
@@ -155,7 +157,8 @@ public class StartUpDataService implements ApplicationListener<ApplicationReadyE
                         "Geh mal lieber",
                         "Keinen Kilometer CO2-Austoß",
                         LocalDate.of(2021, 5, 6),
-                        10.
+                        10.,
+                        "https://images.unsplash.com/photo-1569992274375-e56b14e234f1?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzV8fHdhbGtpbmclMjBuYXR1cmV8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
                 )
         );
         dailyChallengeRepository.save(
@@ -164,7 +167,8 @@ public class StartUpDataService implements ApplicationListener<ApplicationReadyE
                         "Einer reicht",
                         "Komme heute nur mit einem Bildschirm aus!",
                         LocalDate.of(2021, 5, 7),
-                        10.
+                        10.,
+                        "https://images.unsplash.com/photo-1576145789346-ebf75e1c5c76?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTl8fHdvcmtwbGFjZSUyMHNjcmVlbnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
                 )
         );
         dailyChallengeRepository.save(
@@ -173,7 +177,8 @@ public class StartUpDataService implements ApplicationListener<ApplicationReadyE
                         "Big Brain Time",
                         "Denke nach bevor du googlest!",
                         LocalDate.of(2021, 5, 8),
-                        10.
+                        10.,
+                        "https://images.unsplash.com/photo-1530973428-5bf2db2e4d71?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YnJhaW58ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
                 )
         );
         rewardsRepository.save(

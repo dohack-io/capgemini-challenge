@@ -28,4 +28,6 @@ public class DailyChallenge {
     private LocalDate date;
 
     private Double challengePoints;
+
+    private String url;
 }
