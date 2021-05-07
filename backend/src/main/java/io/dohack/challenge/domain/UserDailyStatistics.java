@@ -34,6 +34,12 @@ public class UserDailyStatistics {
 
     private Double co2;
 
+    private Integer level;
+
+    private Integer levelProgression;
+
+    private Integer levelUpThreshold;
+
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "user_daily_statistics_id")
     @ToString.Exclude

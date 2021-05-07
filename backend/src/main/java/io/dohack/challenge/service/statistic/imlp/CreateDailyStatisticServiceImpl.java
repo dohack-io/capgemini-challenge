@@ -53,6 +53,9 @@ public class CreateDailyStatisticServiceImpl implements CreateDailyStatisticServ
             } else {
                 user.get().setLevelProgression(user.get().getLevelProgression() + user.get().getPoints().intValue());
             }
+            statistics.setLevel(user.get().getLevel());
+            statistics.setLevelProgression(user.get().getLevelProgression());
+            statistics.setLevelUpThreshold(user.get().getLevelUpThreshold());
             userRepository.save(user.get());
         }
         return null;

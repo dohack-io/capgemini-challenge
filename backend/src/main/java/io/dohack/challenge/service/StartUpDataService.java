@@ -39,7 +39,7 @@ public class StartUpDataService implements ApplicationListener<ApplicationReadyE
                         .seat(SeatNames.ANTON_SEAT)
                         .defaultCommuteDistance(20.0)
                         .defaultCommuteType(CommuteType.BUS)
-                        .level(getRandomLevel())
+                        .level(7)
                         .levelProgression(getRandomLevelProgression())
                         .levelUpThreshold(1000)
                         .userDailyStatisticsList(getMockedUserDailyList())
@@ -56,7 +56,7 @@ public class StartUpDataService implements ApplicationListener<ApplicationReadyE
                         .seat(SeatNames.CHRISTOPH_SEAT)
                         .defaultCommuteDistance(20.0)
                         .defaultCommuteType(CommuteType.HYBRID_CAR)
-                        .level(getRandomLevel())
+                        .level(7)
                         .levelProgression(getRandomLevelProgression())
                         .levelUpThreshold(1000)
                         .userDailyStatisticsList(getMockedUserDailyList())
@@ -73,7 +73,7 @@ public class StartUpDataService implements ApplicationListener<ApplicationReadyE
                         .seat(SeatNames.JOHANNES_SEAT)
                         .defaultCommuteDistance(20.0)
                         .defaultCommuteType(CommuteType.BIKE)
-                        .level(getRandomLevel())
+                        .level(7)
                         .levelProgression(getRandomLevelProgression())
                         .levelUpThreshold(1000)
                         .userDailyStatisticsList(getMockedUserDailyList())
@@ -90,7 +90,7 @@ public class StartUpDataService implements ApplicationListener<ApplicationReadyE
                         .seat(SeatNames.KAI_SEAT)
                         .defaultCommuteDistance(20.0)
                         .defaultCommuteType(CommuteType.WALKING)
-                        .level(getRandomLevel())
+                        .level(7)
                         .levelProgression(getRandomLevelProgression())
                         .levelUpThreshold(1000)
                         .userDailyStatisticsList(getMockedUserDailyList())
@@ -107,7 +107,7 @@ public class StartUpDataService implements ApplicationListener<ApplicationReadyE
                         .seat(SeatNames.MARIUS_SEAT)
                         .defaultCommuteDistance(20.0)
                         .defaultCommuteType(CommuteType.TRAM)
-                        .level(getRandomLevel())
+                        .level(7)
                         .levelProgression(getRandomLevelProgression())
                         .levelUpThreshold(1000)
                         .userDailyStatisticsList(getMockedUserDailyList())
@@ -124,7 +124,7 @@ public class StartUpDataService implements ApplicationListener<ApplicationReadyE
                         .seat(SeatNames.SILAS_SEAT)
                         .defaultCommuteDistance(20.0)
                         .defaultCommuteType(CommuteType.CAR)
-                        .level(getRandomLevel())
+                        .level(7)
                         .levelProgression(getRandomLevelProgression())
                         .levelUpThreshold(1000)
                         .userDailyStatisticsList(getMockedUserDailyList())
@@ -213,9 +213,6 @@ public class StartUpDataService implements ApplicationListener<ApplicationReadyE
         );
     }
 
-    Integer getRandomLevel() {
-        return ThreadLocalRandom.current().nextInt(1, 10 + 1);
-    }
 
     Integer getRandomLevelProgression() {
         return ThreadLocalRandom.current().nextInt(1, 900 + 1);
@@ -247,6 +244,9 @@ public class StartUpDataService implements ApplicationListener<ApplicationReadyE
                     getDailyChallengePoints(),
                     0.,
                     0.,
+                    i,
+                    getRandomLevelProgression(),
+                    1000,
                     getRandomCommuteList()
             );
             mock.setPointsEarned(CreateDailyStatisticServiceImpl.calculateScore(mock));
