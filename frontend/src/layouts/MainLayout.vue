@@ -28,11 +28,11 @@
     </q-page-container>
 
     <q-footer>
-      <q-tabs class="text-dark bg-white shadow-2">
-        <q-route-tab icon="home" to="/" />
-        <q-route-tab icon="edit" to="/statistics/form" />
-        <q-route-tab icon="today" to="/daily-challenge"/>
-        <q-route-tab icon="format_list_numbered" to="/highscores"/>
+      <q-tabs align="center" class="text-dark bg-white shadow-2 height-md">
+        <q-route-tab content-class="font-md" icon="home" to="/" />
+        <q-route-tab content-class="font-md" icon="edit" to="/statistics/form" />
+        <q-route-tab content-class="font-md" icon="today" to="/daily-challenge"/>
+        <q-route-tab content-class="font-md" icon="format_list_numbered" to="/highscores"/>
       </q-tabs>
     </q-footer>
   </q-layout>
@@ -74,3 +74,13 @@ export default {
   }
 };
 </script>
+
+<style>
+.font-md > i {
+  font-size: 2rem !important;
+}
+
+.height-md {
+  height: 4rem;
+}
+</style>
