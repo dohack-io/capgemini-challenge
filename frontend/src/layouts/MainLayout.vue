@@ -32,6 +32,7 @@
         <q-route-tab icon="home" to="/" />
         <q-route-tab icon="edit" to="/statistics/form" />
         <q-route-tab icon="today" to="/daily-challenge"/>
+        <q-route-tab icon="format_list_numbered" to="/highscores"/>
       </q-tabs>
     </q-footer>
   </q-layout>
@@ -69,7 +70,7 @@ export default {
     if (!this.$store.getters["credentials/isAuthenticated"]) {
       this.$router.push('/login');
     }
-    Dark.set(localStorage.getItem('darkMode') == 'true');
+    Dark.set(localStorage.getItem('darkMode') === 'true');
   }
 };
 </script>

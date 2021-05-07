@@ -17,6 +17,18 @@ export default {
       error: 'Fehler beim Abrufen der aktuellen Daily Challenge.'
     }
   },
+  highScores: {
+    title: 'Bestenliste',
+    sending: {
+      error: 'Fehler beim Abrufen der Bestenliste.'
+    },
+    table: {
+      placement: 'Platz',
+      name: 'Name',
+      badges: 'Badges',
+      co2Score: 'Score'
+    }
+  },
   userStatisticsForm: {
     title: "Statistik eintragen",
     coffee: {
