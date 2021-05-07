@@ -115,6 +115,7 @@ public class StartUpDataService implements ApplicationListener<ApplicationReadyE
                         .levelProgression(getRandomLevelProgression())
                         .levelUpThreshold(1000)
                         .userDailyStatisticsList(getMockedUserDailyList())
+                        .url("https://dohack.io/static/cee080b8c89b5bf73b332cc6783eb248/497c6/Igor_400x400.png")
                         .build()
         );
         userRepository.save(
@@ -132,7 +133,7 @@ public class StartUpDataService implements ApplicationListener<ApplicationReadyE
                         .levelProgression(getRandomLevelProgression())
                         .levelUpThreshold(1000)
                         .userDailyStatisticsList(getMockedUserDailyList())
-                        .url("https://dohack.io/static/cee080b8c89b5bf73b332cc6783eb248/497c6/Igor_400x400.png")
+                        .url("https://dohack.io/static/98a8503d5ed05e83c69fa79f519bf47b/497c6/Silas_400x400.png")
                         .build()
         );
         mockElectricSensorService.readMockedSensorValues();
