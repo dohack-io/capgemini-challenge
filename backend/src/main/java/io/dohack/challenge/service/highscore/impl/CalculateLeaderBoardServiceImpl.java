@@ -25,7 +25,7 @@ public class CalculateLeaderBoardServiceImpl implements CalculateLeaderBoardServ
         return userRepository.findAll()
                 .stream()
                 .filter(it -> it.getCo2Score() >= 0)
-                .sorted(Comparator.comparingDouble(User::getCo2Score))
+                .sorted(Comparator.comparingDouble(User::getCo2Score).reversed())
                 .map(it -> new HighScoreDto(it.getDisplayName(),
                         it.getCo2Score(),
                         calculateAverageLunchScorePerMonth(it),
