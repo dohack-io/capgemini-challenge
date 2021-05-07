@@ -4,7 +4,7 @@
   publish = "dist/pwa"
 
 [[redirects]]
-  from = "/api/*"
+  from = "/api/**"
   to = "http://capgemini-loadbalancer-1573441832.eu-central-1.elb.amazonaws.com:8081/:splat"
   status = 200
 
