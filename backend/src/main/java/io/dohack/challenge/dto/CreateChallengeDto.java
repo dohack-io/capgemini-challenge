@@ -12,4 +12,5 @@ public class CreateChallengeDto {
     private String description;
     private LocalDate date;
     private Double challengePoints;
+    private String url;
 }
