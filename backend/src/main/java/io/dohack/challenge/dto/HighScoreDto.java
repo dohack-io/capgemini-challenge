@@ -12,4 +12,7 @@ import lombok.NoArgsConstructor;
 public class HighScoreDto {
     private String displayName;
     private Double co2Score;
+    private Double averageLunchScorePerMonth;
+    private Double averageCompletedChallengesPerMonth;
+    private Double averCo2ScorePerMonth;
 }
