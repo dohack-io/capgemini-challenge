@@ -1,5 +1,6 @@
 [build]
-  command = "cd frontend && yarn install && yarn simpleBuild"
+  base = "frontend/"
+  command = "yarn install && yarn simpleBuild"
   publish = "dist/pwa"
 
 [[redirects]]
