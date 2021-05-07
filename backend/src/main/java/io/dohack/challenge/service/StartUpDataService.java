@@ -43,6 +43,7 @@ public class StartUpDataService implements ApplicationListener<ApplicationReadyE
                         .levelProgression(getRandomLevelProgression())
                         .levelUpThreshold(1000)
                         .userDailyStatisticsList(getMockedUserDailyList())
+                        .url("https://bonding.de/wp-content/uploads/2020/10/Anton-01-02.png")
                         .build()
         );
         userRepository.save(
@@ -60,6 +61,7 @@ public class StartUpDataService implements ApplicationListener<ApplicationReadyE
                         .levelProgression(getRandomLevelProgression())
                         .levelUpThreshold(1000)
                         .userDailyStatisticsList(getMockedUserDailyList())
+                        .url("https://dohack.io/static/b64a216499a617a34a4ec2dfe637b756/497c6/Christoph_400x400.png")
                         .build()
         );
         userRepository.save(
@@ -77,6 +79,7 @@ public class StartUpDataService implements ApplicationListener<ApplicationReadyE
                         .levelProgression(getRandomLevelProgression())
                         .levelUpThreshold(1000)
                         .userDailyStatisticsList(getMockedUserDailyList())
+                        .url("https://dohack.io/static/f05dda00da2d34cf601e62c61b5efd52/497c6/Johannes_400x400.png")
                         .build()
         );
         userRepository.save(
@@ -94,6 +97,7 @@ public class StartUpDataService implements ApplicationListener<ApplicationReadyE
                         .levelProgression(getRandomLevelProgression())
                         .levelUpThreshold(1000)
                         .userDailyStatisticsList(getMockedUserDailyList())
+                        .url("https://dohack.io/static/c4b3350268a30def15da089836c6ca1e/497c6/Kai_400x400.png")
                         .build()
         );
         userRepository.save(
@@ -128,6 +132,7 @@ public class StartUpDataService implements ApplicationListener<ApplicationReadyE
                         .levelProgression(getRandomLevelProgression())
                         .levelUpThreshold(1000)
                         .userDailyStatisticsList(getMockedUserDailyList())
+                        .url("https://dohack.io/static/cee080b8c89b5bf73b332cc6783eb248/497c6/Igor_400x400.png")
                         .build()
         );
         mockElectricSensorService.readMockedSensorValues();

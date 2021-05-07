@@ -41,6 +41,8 @@ public class User {
 
     private Integer levelUpThreshold;
 
+    private String url;
+
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "user_id")
     @OrderBy("day ASC")
