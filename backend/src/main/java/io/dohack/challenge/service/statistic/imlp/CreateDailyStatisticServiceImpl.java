@@ -59,25 +59,26 @@ public class CreateDailyStatisticServiceImpl implements CreateDailyStatisticServ
     }
 
     //calculation in mKg
-    private Double calculateCo2Score(UserDailyStatistics statistics) {
+    public static Double calculateCo2Score(UserDailyStatistics statistics) {
         return GROUND_SCORE +
                 (statistics.getNumberOfCoffees() * .075) +
-                statistics.getEnergyConsumption() +
+                (statistics.getEnergyConsumption()/1000 * 0.4) +
                 (statistics.getLunchScore()) +
                 statistics.getCommuteList().stream()
                         .map(commute -> (commute.getType().value * commute.getDistance() / 1000))
                         .reduce(0.0, Double::sum);
     }
 
-    private Double calculateScore(UserDailyStatistics statistics) {
-        return GROUND_SCORE +
+    public static Double calculateScore(UserDailyStatistics statistics) {
+/*        return GROUND_SCORE +
                 (statistics.getNumberOfCoffees() * -2) +
                 (statistics.getEnergyConsumption() * -2) +
                 (statistics.getLunchScore() * -3) +
                 statistics.getCommuteList().stream()
                         .map(commute -> (commute.getType().value * commute.getDistance() / 100))
                         .reduce(0.0, Double::sum) +
-                statistics.getDailyChallengePoints();
+                statistics.getDailyChallengePoints();*/
+        return GROUND_SCORE * (100/calculateCo2Score(statistics));
     }
 
     private CommuteType getTypeFromString(String type, User user) {

@@ -1,12 +1,11 @@
 package io.dohack.challenge.service;
 
-import io.dohack.challenge.domain.CommuteType;
-import io.dohack.challenge.domain.DailyChallenge;
-import io.dohack.challenge.domain.Rewards;
-import io.dohack.challenge.domain.User;
+import io.dohack.challenge.domain.*;
 import io.dohack.challenge.repositories.DailyChallengeRepository;
 import io.dohack.challenge.repositories.RewardsRepository;
 import io.dohack.challenge.repositories.UserRepository;
+import io.dohack.challenge.service.statistic.CreateDailyStatisticService;
+import io.dohack.challenge.service.statistic.imlp.CreateDailyStatisticServiceImpl;
 import io.dohack.challenge.util.SeatNames;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
@@ -14,6 +13,9 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 @Service
@@ -40,6 +42,7 @@ public class StartUpDataService implements ApplicationListener<ApplicationReadyE
                         .level(getRandomLevel())
                         .levelProgression(getRandomLevelProgression())
                         .levelUpThreshold(1000)
+                        .userDailyStatisticsList(getMockedUserDailyList())
                         .build()
         );
         userRepository.save(
@@ -56,6 +59,7 @@ public class StartUpDataService implements ApplicationListener<ApplicationReadyE
                         .level(getRandomLevel())
                         .levelProgression(getRandomLevelProgression())
                         .levelUpThreshold(1000)
+                        .userDailyStatisticsList(getMockedUserDailyList())
                         .build()
         );
         userRepository.save(
@@ -72,6 +76,7 @@ public class StartUpDataService implements ApplicationListener<ApplicationReadyE
                         .level(getRandomLevel())
                         .levelProgression(getRandomLevelProgression())
                         .levelUpThreshold(1000)
+                        .userDailyStatisticsList(getMockedUserDailyList())
                         .build()
         );
         userRepository.save(
@@ -88,6 +93,7 @@ public class StartUpDataService implements ApplicationListener<ApplicationReadyE
                         .level(getRandomLevel())
                         .levelProgression(getRandomLevelProgression())
                         .levelUpThreshold(1000)
+                        .userDailyStatisticsList(getMockedUserDailyList())
                         .build()
         );
         userRepository.save(
@@ -104,6 +110,7 @@ public class StartUpDataService implements ApplicationListener<ApplicationReadyE
                         .level(getRandomLevel())
                         .levelProgression(getRandomLevelProgression())
                         .levelUpThreshold(1000)
+                        .userDailyStatisticsList(getMockedUserDailyList())
                         .build()
         );
         userRepository.save(
@@ -120,6 +127,7 @@ public class StartUpDataService implements ApplicationListener<ApplicationReadyE
                         .level(getRandomLevel())
                         .levelProgression(getRandomLevelProgression())
                         .levelUpThreshold(1000)
+                        .userDailyStatisticsList(getMockedUserDailyList())
                         .build()
         );
         mockElectricSensorService.readMockedSensorValues();
@@ -211,5 +219,60 @@ public class StartUpDataService implements ApplicationListener<ApplicationReadyE
 
     Integer getRandomLevelProgression() {
         return ThreadLocalRandom.current().nextInt(1, 900 + 1);
+    }
+
+    Integer getRandomCoffee() {
+        return ThreadLocalRandom.current().nextInt(0, 5 + 1);
+    }
+
+    Double getRandomLunchScore() {
+        Random r = new Random();
+        return 1. + (10. - 1.) * r.nextDouble();
+    }
+
+    Double getDailyChallengePoints() {
+        Random r = new Random();
+        return 8. + (10. - 8.) * r.nextDouble();
+    }
+
+    List<UserDailyStatistics> getMockedUserDailyList() {
+        List<UserDailyStatistics> statistics = new ArrayList<>();
+        for (int i = 1; i < 7; i++) {
+            UserDailyStatistics mock = new UserDailyStatistics(
+                    null,
+                    LocalDate.of(2021, 5, i),
+                    getRandomCoffee(),
+                    MockElectricSensorService.randomizeValue(),
+                    getRandomLunchScore(),
+                    getDailyChallengePoints(),
+                    0.,
+                    0.,
+                    getRandomCommuteList()
+            );
+            mock.setPointsEarned(CreateDailyStatisticServiceImpl.calculateScore(mock));
+            mock.setCo2(CreateDailyStatisticServiceImpl.calculateCo2Score(mock));
+            statistics.add(
+                  mock
+            );
+        }
+        return statistics;
+    }
+
+    List<Commute> getRandomCommuteList() {
+        List<Commute> commutes = new ArrayList<>();
+        Integer numberOfCommutes = ThreadLocalRandom.current().nextInt(0, 3 + 1);
+        for (int i = 0; i < numberOfCommutes; i++) {
+            Integer randomCommuteNumber = ThreadLocalRandom.current().nextInt(0, 11 + 1);
+            Double randomDistance = 10. + (50. - 10.) * ThreadLocalRandom.current().nextDouble();
+            CommuteType commuteType = CommuteType.values()[randomCommuteNumber];
+            commutes.add(
+                    new Commute(
+                            null,
+                            randomDistance,
+                            commuteType
+                    )
+            );
+        }
+        return commutes;
     }
 }
