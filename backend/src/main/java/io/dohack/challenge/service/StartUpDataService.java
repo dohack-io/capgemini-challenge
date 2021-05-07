@@ -120,8 +120,8 @@ public class StartUpDataService implements ApplicationListener<ApplicationReadyE
         );
         userRepository.save(
                 User.builder()
-                        .username("silas")
-                        .password("silas123")
+                        .username("Silas")
+                        .password("silas")
                         .email("s.m@example.io")
                         .displayName("Silas M.")
                         .points(0.0)

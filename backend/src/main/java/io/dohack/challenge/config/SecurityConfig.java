@@ -61,7 +61,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 new Pair("johannes", "johannes123"),
                 new Pair("kai", "kai123"),
                 new Pair("marius", "marius123"),
-                new Pair("silas", "silas123"));
+                new Pair("Silas", "silas"));
         return new InMemoryUserDetailsManager(
                 usernameAndPassword.stream().map(it -> org.springframework.security.core.userdetails.User.withDefaultPasswordEncoder()
                         .username(it.getFirst())
