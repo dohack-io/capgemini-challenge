@@ -73,7 +73,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public CorsConfigurationSource corsConfigurationSource()  {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Collections.singletonList(corsOrigin));
+        configuration.setAllowedOrigins(Arrays.asList(corsOrigin, "https://green-leaf.netlify.app/#/"));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "OPTIONS"));
         configuration.setAllowedHeaders(Arrays.asList("authorization", "content-type", "xsrf-token", "observe",
                 "Cache-Control", "remember-me", "WWW-Authenticate", "Access-Control-Allow-Origin"));
