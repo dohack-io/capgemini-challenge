@@ -34,6 +34,14 @@
         </q-timeline>
       </q-card-section>
     </q-card>
+
+    <q-card v-if="requestStatus === 'success' && dailyChallenge" class="q-mt-lg">
+      <q-card-section>
+        <div class="text-h6 q-mb-sm">{{ $t("index.scoreTips.title") }}</div>
+
+        <q-chat-message bg-color="primary" text-color="white" :text="messageArray" :avatar="require('../assets/images/co2_guru.jpg')"/>
+      </q-card-section>
+    </q-card>
   </q-page>
 </template>
 
@@ -44,17 +52,27 @@
 </style>
 
 <script>
+import commuteTypes from "src/model/CommuteTypes";
+
 export default {
   name: "PageIndex",
   data() {
     const challengeList = [];
+    const dailyChallenge = undefined;
     const requestStatus = 'sending';
+    const scoreTips = [
+      {key: 'energyConsumption', tip: this.$t('index.scoreTips.energyConsumption')},
+      {key: 'lunch', tip: this.$t('index.scoreTips.lunch')},
+      {key: 'coffee', tip: this.$t('index.scoreTips.coffee')},
+      {key: 'commute', tip: this.$t('index.scoreTips.commute')}
+    ]
 
     return {
       progress: 0.65,
       points: 650,
       nextLevel: 1000,
       requestStatus,
+      dailyChallenge,
       challengeList
     };
   },
@@ -69,20 +87,51 @@ export default {
   computed: {
     progressLabel() {
       return this.points + "/" + this.nextLevel;
+    },
+    commuteScore() {
+      if (this.dailyChallenge && this.dailyChallenge.commuteList.length > 0) {
+        return this.dailyChallenge.commuteList
+          .map(commute => commute.distance * commuteTypes.find(type => type.value === commute.type).co2)
+          .reduce((total, a) => total + a).toFixed(2);
+      }
+      return 0;
+    },
+    messageArray() {
+      const messageArray = [];
+      if (this.dailyChallenge.numberOfCoffees > 5) {
+        messageArray.push(this.$t('index.scoreTips.coffee.text'));
+      }
+      if (this.dailyChallenge.lunchScore > 5) {
+        messageArray.push(this.$t('index.scoreTips.lunch.text'));
+      }
+      if (this.dailyChallenge.energyConsumption > 7.5) {
+        messageArray.push(this.$t('index.scoreTips.energyConsumption.text'));
+      }
+      if (this.commuteScore > 5) {
+        messageArray.push(this.$t('index.scoreTips.commute.text'));
+      }
+      return messageArray;
     }
   },
   async mounted() {
-    if (!this.$store.getters["credentials/isAuthenticated"]) {
-      this.$router.push('/login');
-    }
+    const username = this.$store.getters["credentials/getUsername"];
     const requestResult = await fetch('http://localhost:8081/challenge/all', {
       method: 'GET'
     });
-    if (requestResult.ok) {
+    const statisticsResult = await fetch(`http://localhost:8081/statistics/daily/${username}/current`, {
+      method: 'GET'
+    });
+    if (requestResult.ok && statisticsResult.ok) {
       this.challengeList = await requestResult.json();
-      this.requestStatus = 'success'
+      try {
+        this.dailyChallenge = await statisticsResult.json();
+      } catch (e) {
+        this.dailyChallenge = undefined;
+      }
+      console.log(this.dailyChallenge);
+      this.requestStatus = 'success';
     } else {
-      this.requestStatus = 'error'
+      this.requestStatus = 'error';
     }
   }
 };

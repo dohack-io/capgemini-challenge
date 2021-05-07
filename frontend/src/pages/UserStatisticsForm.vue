@@ -6,8 +6,12 @@
       <q-spinner-gears size="50px" color="primary" />
     </q-inner-loading>
 
-    <q-banner class="bg-positive text-white" v-if="sendStatus === 'send'">
+    <q-banner class="bg-primary text-white" v-if="sendStatus === 'send'">
       {{ $t('userStatisticsForm.sending.success') }}
+    </q-banner>
+
+    <q-banner class="bg-info text-white" v-if="sendStatus === 'alreadySend'">
+      {{ $t('userStatisticsForm.sending.alreadySend') }}
     </q-banner>
 
     <q-banner class="bg-negative text-white" v-if="sendStatus === 'error'">
@@ -200,9 +204,15 @@ export default {
       }
     }
   },
-  mounted() {
-    if (!this.$store.getters["credentials/isAuthenticated"]) {
-      this.$router.push('/login');
+  async mounted() {
+    const username = this.$store.getters["credentials/getUsername"];
+    const statisticsResult = await fetch(`http://localhost:8081/statistics/daily/${username}/current`, {
+      method: 'GET'
+    });
+    if (statisticsResult.ok) {
+      this.requestStatus = !statisticsResult.bodyUsed ? 'alreadySend' : 'success';
+    } else {
+      this.requestStatus = 'error';
     }
   }
 }

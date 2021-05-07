@@ -71,9 +71,6 @@ export default {
     }
   },
   async mounted() {
-    if (!this.$store.getters["credentials/isAuthenticated"]) {
-      this.$router.push('/login');
-    }
     const requestResult = await fetch('http://localhost:8081/statistics/leaderboard');
     if (requestResult.ok) {
       this.users = await requestResult.json();
