@@ -27,7 +27,7 @@
 
 <script>
 import {ref} from "@vue/composition-api";
-import {login} from "src/services/backendService";
+import {getUserInfo, login} from "src/services/backendService";
 
 export default {
   name: "Login",
@@ -41,7 +41,9 @@ export default {
       if (username.value && password.value) {
         const loginResult = await login(username.value, password.value);
         if (loginResult.ok) {
-          this.$store.commit('credentials/setUsername', username.value);
+          const userResult = await getUserInfo(username.value);
+          const user = await userResult.json();
+          this.$store.commit("credentials/setUser", user);
           this.$router.push('/');
         } else {
           errors.value.push(this.$t('login.errors.usernamePasswordWrong'))

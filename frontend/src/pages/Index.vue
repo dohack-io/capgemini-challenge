@@ -61,12 +61,6 @@ export default {
     const challengeList = [];
     const dailyChallenge = undefined;
     const requestStatus = 'sending';
-    const scoreTips = [
-      {key: 'energyConsumption', tip: this.$t('index.scoreTips.energyConsumption')},
-      {key: 'lunch', tip: this.$t('index.scoreTips.lunch')},
-      {key: 'coffee', tip: this.$t('index.scoreTips.coffee')},
-      {key: 'commute', tip: this.$t('index.scoreTips.commute')}
-    ]
 
     return {
       progress: 0.65,
@@ -116,7 +110,7 @@ export default {
   },
   async mounted() {
     const requestResult = await getAllChallenges();
-    const statisticsResult = await getCurrentDailyChallenge(this.$store.getters["credentials/getUsername"]);
+    const statisticsResult = await getCurrentDailyChallenge(this.$store.getters["credentials/getUser"].username);
     if (requestResult.ok && statisticsResult.ok) {
       this.challengeList = await requestResult.json();
       try {

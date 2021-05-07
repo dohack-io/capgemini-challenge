@@ -1,24 +1,24 @@
 export default {
   namespaced: true,
   state: {
-    username: ''
+    user: undefined
   },
   getters: {
-    getUsername (state) {
-      return state.username ? state.username : sessionStorage.getItem('username');
+    getUser (state) {
+      return state.user ? state.user : JSON.parse(sessionStorage.getItem('user'));
     },
     isAuthenticated (state) {
-      return state.username && typeof state.username === 'string' ? true : !!sessionStorage.getItem('username');
+      return state.user && typeof state.user === 'string' ? true : !!sessionStorage.getItem('user');
     }
   },
   mutations: {
-    setUsername (state, username) {
-      sessionStorage.setItem('username', username);
-      state.username = username;
+    setUser (state, user) {
+      sessionStorage.setItem('user', JSON.stringify(user));
+      state.user = user;
     },
-    clearUsername (state) {
-      sessionStorage.removeItem('username');
-      state.username = undefined;
+    clearUser (state) {
+      sessionStorage.removeItem('user');
+      state.user = undefined;
     }
   }
 }

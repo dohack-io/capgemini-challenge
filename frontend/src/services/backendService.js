@@ -17,6 +17,10 @@ export async function getLeaderboard() {
   return await fetch(`${baseUrl}statistics/leaderboard`);
 }
 
+export async function getUserInfo(username) {
+  return await fetch(`${baseUrl}user/${username}`);
+}
+
 export async function login(username, password) {
   return await fetch(
     `${baseUrl}login?username=${username}&password=${password}`, {

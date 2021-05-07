@@ -168,7 +168,7 @@ export default {
   methods: {
     onSubmit: async function () {
       this.sendStatus = 'sending';
-      const sendResult = await submitDailyStatistics(this.$store.getters["credentials/getUsername"], this.coffee,
+      const sendResult = await submitDailyStatistics(this.$store.getters["credentials/getUser"].username, this.coffee,
         this.calculateFoodScore, this.dailyChallenge, this.commutions.value);
       if (sendResult.ok) {
         this.sendStatus = 'send';
@@ -189,7 +189,7 @@ export default {
     }
   },
   async mounted() {
-    const statisticsResult = await getCurrentDailyChallenge(this.$store.getters["credentials/getUsername"])
+    const statisticsResult = await getCurrentDailyChallenge(this.$store.getters["credentials/getUser"].username)
     if (statisticsResult.ok) {
       try {
         await statisticsResult.json();

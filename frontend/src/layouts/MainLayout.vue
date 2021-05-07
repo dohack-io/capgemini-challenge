@@ -14,6 +14,9 @@
           @input="toggleDarkMode()"
         />
         <q-btn flat icon="settings" to="/user-settings" />
+        <q-avatar v-if="$store.getters['credentials/isAuthenticated']">
+          <img :src="$store.getters['credentials/getUser'].url"/>
+        </q-avatar>
         <q-btn
           flat
           v-if="$store.getters['credentials/isAuthenticated']"
@@ -40,12 +43,13 @@
 
 <script>
 import { Dark } from "quasar";
+import {getUserInfo} from "src/services/backendService";
 
 export default {
   name: "MainLayout",
   setup() {
     function logout() {
-      this.$store.commit("credentials/clearUsername");
+      this.$store.commit("credentials/clearUser");
       this.$router.push("/login");
     }
 
@@ -55,9 +59,11 @@ export default {
   },
   data() {
     const darkMode = Dark.isActive;
+    const user = undefined;
 
     return {
-      darkMode
+      darkMode,
+      user
     };
   },
   methods: {
@@ -66,7 +72,7 @@ export default {
       localStorage.setItem("darkMode", Dark.isActive);
     }
   },
-  mounted() {
+  async mounted() {
     if (!this.$store.getters["credentials/isAuthenticated"]) {
       this.$router.push('/login');
     }

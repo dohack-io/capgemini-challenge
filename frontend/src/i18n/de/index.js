@@ -8,7 +8,7 @@ export default {
       error: 'Fehler beim Abrufen der Challenges.'
     },
     scoreTips: {
-      title: 'Tipps',
+      title: 'Tipps vom Guru',
       energyConsumption: {
         label: 'Energieverbrauch',
         text: 'Du hast im Büro sehr viel Energie verbraucht. Um deinen Energieverbrauch achte in Zukunft' +
