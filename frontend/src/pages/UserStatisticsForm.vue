@@ -199,6 +199,11 @@ export default {
         return 0;
       }
     }
+  },
+  mounted() {
+    if (!this.$store.getters["credentials/isAuthenticated"]) {
+      this.$router.push('/login');
+    }
   }
 }
 </script>

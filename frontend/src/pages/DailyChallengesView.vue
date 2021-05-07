@@ -31,6 +31,9 @@ export default {
     }
   },
   async mounted() {
+    if (!this.$store.getters["credentials/isAuthenticated"]) {
+      this.$router.push('/login');
+    }
     const dailyChallengeResult = await fetch('http://localhost:8081/challenge/daily', {
       method: 'GET'
     });

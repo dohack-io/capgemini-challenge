@@ -79,6 +79,9 @@ export default {
     }
   },
   mounted() {
+    if (!this.$store.getters["credentials/isAuthenticated"]) {
+      this.$router.push('/login');
+    }
     let data = JSON.parse(localStorage.getItem('data'));
     this.email = data?.email ?? '';
     this.displayName = data?.displayName ?? '';
