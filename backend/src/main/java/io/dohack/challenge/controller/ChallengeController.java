@@ -19,7 +19,11 @@ public class ChallengeController {
 
     @GetMapping("challenge/daily")
     Optional<DailyChallenge> getDailyChallenge() {
-        return readChallengesService.readTodayChallenge();
+        Optional<DailyChallenge> dailyChallenge = readChallengesService.readTodayChallenge();
+        if (dailyChallenge.isPresent()) {
+            return dailyChallenge;
+        }
+        throw new ResourceNotFoundException();
     }
 
     @GetMapping("challenge/all")
@@ -28,8 +32,13 @@ public class ChallengeController {
     }
 
     @GetMapping("challenge/date/{date}")
-    Optional<DailyChallenge> getDailyChallengeByDate(@PathVariable("date") LocalDate date) {
-        return readChallengesService.readChallengeByDate(date);
+    Optional<DailyChallenge> getDailyChallengeByDate(@PathVariable("date") String date) {
+        LocalDate localDate = LocalDate.parse(date);
+        Optional<DailyChallenge> dailyChallenge = readChallengesService.readChallengeByDate(localDate);
+        if (dailyChallenge.isPresent()) {
+            return dailyChallenge;
+        }
+        throw new ResourceNotFoundException();
     }
 
     @PostMapping("challenge/create")
