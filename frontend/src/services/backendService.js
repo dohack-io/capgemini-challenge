@@ -1,5 +1,5 @@
 const baseUrl = process.env.DEV ? 'http://localhost:8081/'
-  : 'http://capgemini-loadbalancer-1573441832.eu-central-1.elb.amazonaws.com:8081/';
+  : 'https://capgemini-loadbalancer-1573441832.eu-central-1.elb.amazonaws.com:8081/';
 
 export async function getAllChallenges() {
   return await fetch(`${baseUrl}challenge/all`, {
