@@ -10,17 +10,20 @@
       <q-card class="q-mt-lg" v-for="(dailyChallenge, index) in dailyChallenges" :key="index">
         <q-img :src="dailyChallenge.url" basic>
           <div class="absolute-bottom text-subtitle2 text-center">
-            {{ $t('dailyChallengesView.challengeName') }}: {{ dailyChallenge.title }}
+            {{ dailyChallenge.title }}
           </div>
         </q-img>
 
         <q-card-section>
+          <div>{{ dailyChallenge.description }}</div>
           <div>
-            {{ $t('dailyChallengesView.date') }}:
+            <q-icon name="today"/>
             {{ date.formatDate(date.extractDate(dailyChallenge.date, 'YYYY-MM-DD'), 'DD.MM.YYYY') }}
           </div>
-          <div>{{ $t('dailyChallengesView.description') }}: {{ dailyChallenge.description }}</div>
-          <div>{{ $t('dailyChallengesView.points') }}: {{ dailyChallenge.challengePoints }}</div>
+          <div>
+            <q-icon name="emoji_events"/>
+            {{ dailyChallenge.challengePoints }}
+          </div>
         </q-card-section>
       </q-card>
     </div>
