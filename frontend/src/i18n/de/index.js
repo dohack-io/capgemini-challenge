@@ -46,6 +46,7 @@ export default {
     challengeName: 'Titel',
     description: 'Beschreibung',
     points: 'Punkte',
+    date: 'Datum',
     sending: {
       error: 'Fehler beim Abrufen der aktuellen Daily Challenge.'
     }
