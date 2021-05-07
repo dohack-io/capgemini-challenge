@@ -22,6 +22,11 @@ public class ReadChallengesServiceImpl implements ReadChallengesService {
     }
 
     @Override
+    public Optional<DailyChallenge> readChallengeByDate(LocalDate date) {
+        return dailyChallengeRepository.findByDate(date);
+    }
+
+    @Override
     public List<DailyChallenge> readAllDailyChallenges() {
         return dailyChallengeRepository.findAll();
     }
