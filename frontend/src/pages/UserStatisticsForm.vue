@@ -2,19 +2,19 @@
   <q-page class="q-ma-md">
     <div class="text-h4">{{ $t('userStatisticsForm.title') }}</div>
 
-    <q-inner-loading v-if="sendStatus === 'sending'">
+    <q-inner-loading v-if="sendStatus === 'sending'" class="q-mt-md">
       <q-spinner-gears size="50px" color="primary" />
     </q-inner-loading>
 
-    <q-banner class="bg-primary text-white" v-if="sendStatus === 'send'">
+    <q-banner class="bg-primary text-white q-mt-md" v-if="sendStatus === 'send'">
       {{ $t('userStatisticsForm.sending.success') }}
     </q-banner>
 
-    <q-banner class="bg-info text-white" v-if="sendStatus === 'alreadySend'">
+    <q-banner class="bg-info text-black q-mt-md" v-if="sendStatus === 'alreadySend'">
       {{ $t('userStatisticsForm.sending.alreadySend') }}
     </q-banner>
 
-    <q-banner class="bg-negative text-white" v-if="sendStatus === 'error'">
+    <q-banner class="bg-negative text-white q-mt-md" v-if="sendStatus === 'error'">
       {{ $t('userStatisticsForm.sending.error') }}
     </q-banner>
 
@@ -124,6 +124,7 @@
 import {ref} from '@vue/composition-api';
 import commuteTypes from "src/model/CommuteTypes";
 import foodTypes from "src/model/FoodTypes";
+import {getCurrentDailyChallenge, submitDailyStatistics} from "src/services/backendService";
 
 export default {
   name: "UserStatisticsForm",
@@ -167,25 +168,8 @@ export default {
   methods: {
     onSubmit: async function () {
       this.sendStatus = 'sending';
-      const username = this.$store.getters["credentials/getUsername"];
-      const sendResult = await fetch('http://localhost:8081/statistics/daily/create', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json;charset=UTF-8',
-        },
-        body: JSON.stringify({
-          username: username,
-          numberOfCoffees: this.coffee,
-          lunchScore: this.calculateFoodScore,
-          dailyChallengeCompleted: this.dailyChallenge,
-          dailyCommuteList: this.commutions.value.map(commute => {
-            return {
-              distance: commute.commuteDistance,
-              type: commute.commuteType.value
-            }
-          })
-        })
-      });
+      const sendResult = await submitDailyStatistics(this.$store.getters["credentials/getUsername"], this.coffee,
+        this.calculateFoodScore, this.dailyChallenge, this.commutions.value);
       if (sendResult.ok) {
         this.sendStatus = 'send';
       } else {
@@ -205,12 +189,14 @@ export default {
     }
   },
   async mounted() {
-    const username = this.$store.getters["credentials/getUsername"];
-    const statisticsResult = await fetch(`http://localhost:8081/statistics/daily/${username}/current`, {
-      method: 'GET'
-    });
+    const statisticsResult = await getCurrentDailyChallenge(this.$store.getters["credentials/getUsername"])
     if (statisticsResult.ok) {
-      this.requestStatus = !statisticsResult.bodyUsed ? 'alreadySend' : 'success';
+      try {
+        await statisticsResult.json();
+        this.sendStatus = 'alreadySend';
+      } catch (e) {
+        this.sendStatus = 'unsend';
+      }
     } else {
       this.requestStatus = 'error';
     }

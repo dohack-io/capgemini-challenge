@@ -47,6 +47,8 @@
 </template>
 
 <script>
+import {getLeaderboard} from "src/services/backendService";
+
 export default {
   name: "HighScores",
   data() {
@@ -71,7 +73,7 @@ export default {
     }
   },
   async mounted() {
-    const requestResult = await fetch('http://localhost:8081/statistics/leaderboard');
+    const requestResult = await getLeaderboard();
     if (requestResult.ok) {
       this.users = await requestResult.json();
       this.requestStatus = 'success';

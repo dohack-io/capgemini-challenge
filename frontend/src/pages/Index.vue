@@ -53,6 +53,7 @@
 
 <script>
 import commuteTypes from "src/model/CommuteTypes";
+import {getAllChallenges, getCurrentDailyChallenge} from "src/services/backendService";
 
 export default {
   name: "PageIndex",
@@ -114,13 +115,8 @@ export default {
     }
   },
   async mounted() {
-    const username = this.$store.getters["credentials/getUsername"];
-    const requestResult = await fetch('http://localhost:8081/challenge/all', {
-      method: 'GET'
-    });
-    const statisticsResult = await fetch(`http://localhost:8081/statistics/daily/${username}/current`, {
-      method: 'GET'
-    });
+    const requestResult = await getAllChallenges();
+    const statisticsResult = await getCurrentDailyChallenge(this.$store.getters["credentials/getUsername"]);
     if (requestResult.ok && statisticsResult.ok) {
       this.challengeList = await requestResult.json();
       try {
@@ -128,7 +124,6 @@ export default {
       } catch (e) {
         this.dailyChallenge = undefined;
       }
-      console.log(this.dailyChallenge);
       this.requestStatus = 'success';
     } else {
       this.requestStatus = 'error';

@@ -27,6 +27,7 @@
 
 <script>
 import {ref} from "@vue/composition-api";
+import {login} from "src/services/backendService";
 
 export default {
   name: "Login",
@@ -38,10 +39,7 @@ export default {
     async function onSubmit() {
       this.errors = [];
       if (username.value && password.value) {
-        const loginResult = await fetch(
-          `http://localhost:8081/login?username=${username.value}&password=${password.value}`, {
-            method: 'POST'
-          });
+        const loginResult = await login(username.value, password.value);
         if (loginResult.ok) {
           this.$store.commit('credentials/setUsername', username.value);
           this.$router.push('/');

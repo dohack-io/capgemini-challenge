@@ -34,6 +34,7 @@
 
 <script>
 import { date } from 'quasar';
+import {getAllChallenges} from "src/services/backendService";
 
 export default {
   name: "DailyChallengesView",
@@ -48,9 +49,7 @@ export default {
     }
   },
   async mounted() {
-    const dailyChallengeResult = await fetch('http://localhost:8081/challenge/all', {
-      method: 'GET'
-    });
+    const dailyChallengeResult = await getAllChallenges();
     if (dailyChallengeResult.ok) {
       const result = await dailyChallengeResult.json();
       this.dailyChallenges = result.slice(Math.max(result.length - 3, 1));
