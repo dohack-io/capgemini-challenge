@@ -32,7 +32,7 @@ public class CreateDailyStatisticServiceImpl implements CreateDailyStatisticServ
             UserDailyStatistics statistics = UserDailyStatistics.builder()
                     .day(LocalDate.now())
                     .numberOfCoffees(dto.getNumberOfCoffees())
-                    .energyConsumption(mockedSensorValue.isPresent() ? mockedSensorValue.get().getValue() : 100)
+                    .energyConsumption(mockedSensorValue.isPresent() ? mockedSensorValue.get().getValue() : 10)
                     .lunchScore(dto.getLunchScore())
                     .dailyChallengePoints(dailyChallenge.isPresent() ? dailyChallenge.get().getChallengePoints() : 0.0)
                     .commuteList(dto.getDailyCommuteList().stream().map( createDailyCommuteDto -> new Commute(null,
