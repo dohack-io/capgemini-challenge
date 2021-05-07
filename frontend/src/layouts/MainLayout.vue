@@ -30,7 +30,7 @@
       <router-view />
     </q-page-container>
 
-    <q-footer>
+    <q-footer v-if="$store.getters['credentials/isAuthenticated']">
       <q-tabs align="center" class="text-dark bg-white shadow-2 height-md">
         <q-route-tab content-class="font-md" icon="home" to="/" />
         <q-route-tab content-class="font-md" icon="edit" to="/statistics/form" />
