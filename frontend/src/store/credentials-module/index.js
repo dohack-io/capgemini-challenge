@@ -5,7 +5,7 @@ export default {
   },
   getters: {
     getUsername (state) {
-      return state.username;
+      return state.username ? state.username : sessionStorage.getItem('username');
     },
     isAuthenticated (state) {
       return state.username && typeof state.username === 'string' ? true : !!sessionStorage.getItem('username');
