@@ -9,7 +9,7 @@
   force = true
 
 [[redirects]]
-  from = "/api"
-  to = "http://capgemini-loadbalancer-1573441832.eu-central-1.elb.amazonaws.com:8081"
+  from = "/api/*"
+  to = "http://capgemini-loadbalancer-1573441832.eu-central-1.elb.amazonaws.com:8081/:splat"
   status = 200
   force = true
