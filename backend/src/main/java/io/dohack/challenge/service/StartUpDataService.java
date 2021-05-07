@@ -2,8 +2,10 @@ package io.dohack.challenge.service;
 
 import io.dohack.challenge.domain.CommuteType;
 import io.dohack.challenge.domain.DailyChallenge;
+import io.dohack.challenge.domain.Rewards;
 import io.dohack.challenge.domain.User;
 import io.dohack.challenge.repositories.DailyChallengeRepository;
+import io.dohack.challenge.repositories.RewardsRepository;
 import io.dohack.challenge.repositories.UserRepository;
 import io.dohack.challenge.util.SeatNames;
 import lombok.RequiredArgsConstructor;
@@ -12,6 +14,7 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.concurrent.ThreadLocalRandom;
 
 @Service
 @RequiredArgsConstructor
@@ -19,6 +22,7 @@ public class StartUpDataService implements ApplicationListener<ApplicationReadyE
     private final UserRepository userRepository;
     private final MockElectricSensorService mockElectricSensorService;
     private final DailyChallengeRepository dailyChallengeRepository;
+    private final RewardsRepository rewardsRepository;
 
     @Override
     public void onApplicationEvent(ApplicationReadyEvent event) {
@@ -33,6 +37,9 @@ public class StartUpDataService implements ApplicationListener<ApplicationReadyE
                         .seat(SeatNames.ANTON_SEAT)
                         .defaultCommuteDistance(20.0)
                         .defaultCommuteType(CommuteType.BUS)
+                        .level(getRandomLevel())
+                        .levelProgression(getRandomLevelProgression())
+                        .levelUpThreshold(1000)
                         .build()
         );
         userRepository.save(
@@ -46,6 +53,9 @@ public class StartUpDataService implements ApplicationListener<ApplicationReadyE
                         .seat(SeatNames.CHRISTOPH_SEAT)
                         .defaultCommuteDistance(20.0)
                         .defaultCommuteType(CommuteType.HYBRID_CAR)
+                        .level(getRandomLevel())
+                        .levelProgression(getRandomLevelProgression())
+                        .levelUpThreshold(1000)
                         .build()
         );
         userRepository.save(
@@ -59,6 +69,9 @@ public class StartUpDataService implements ApplicationListener<ApplicationReadyE
                         .seat(SeatNames.JOHANNES_SEAT)
                         .defaultCommuteDistance(20.0)
                         .defaultCommuteType(CommuteType.BIKE)
+                        .level(getRandomLevel())
+                        .levelProgression(getRandomLevelProgression())
+                        .levelUpThreshold(1000)
                         .build()
         );
         userRepository.save(
@@ -72,6 +85,9 @@ public class StartUpDataService implements ApplicationListener<ApplicationReadyE
                         .seat(SeatNames.KAI_SEAT)
                         .defaultCommuteDistance(20.0)
                         .defaultCommuteType(CommuteType.WALKING)
+                        .level(getRandomLevel())
+                        .levelProgression(getRandomLevelProgression())
+                        .levelUpThreshold(1000)
                         .build()
         );
         userRepository.save(
@@ -85,6 +101,9 @@ public class StartUpDataService implements ApplicationListener<ApplicationReadyE
                         .seat(SeatNames.MARIUS_SEAT)
                         .defaultCommuteDistance(20.0)
                         .defaultCommuteType(CommuteType.TRAM)
+                        .level(getRandomLevel())
+                        .levelProgression(getRandomLevelProgression())
+                        .levelUpThreshold(1000)
                         .build()
         );
         userRepository.save(
@@ -98,6 +117,9 @@ public class StartUpDataService implements ApplicationListener<ApplicationReadyE
                         .seat(SeatNames.SILAS_SEAT)
                         .defaultCommuteDistance(20.0)
                         .defaultCommuteType(CommuteType.CAR)
+                        .level(getRandomLevel())
+                        .levelProgression(getRandomLevelProgression())
+                        .levelUpThreshold(1000)
                         .build()
         );
         mockElectricSensorService.readMockedSensorValues();
@@ -146,5 +168,48 @@ public class StartUpDataService implements ApplicationListener<ApplicationReadyE
                         10.
                 )
         );
+        rewardsRepository.save(
+                new Rewards(
+                        null,
+                        "Wir Pflanzen einen Baum für dich im Amazonas",
+                        100.0
+                )
+        );
+        rewardsRepository.save(
+                new Rewards(
+                        null,
+                        "Eine Packung unserer besten Fair-Trade Schokolade",
+                        200.0
+                )
+        );
+        rewardsRepository.save(
+                new Rewards(
+                        null,
+                        "Eine Packung unseres besten Fair-Trade Kaffees",
+                        400.0
+                )
+        );
+        rewardsRepository.save(
+                new Rewards(
+                        null,
+                        "Ein Gutschein für ein veganes Essen",
+                        1000.0
+                )
+        );
+        rewardsRepository.save(
+                new Rewards(
+                        null,
+                        "Ein Gutschein für einen Shop deiner Wahl über drölfzig Euros",
+                        2000.0
+                )
+        );
+    }
+
+    Integer getRandomLevel() {
+        return ThreadLocalRandom.current().nextInt(1, 10 + 1);
+    }
+
+    Integer getRandomLevelProgression() {
+        return ThreadLocalRandom.current().nextInt(1, 900 + 1);
     }
 }

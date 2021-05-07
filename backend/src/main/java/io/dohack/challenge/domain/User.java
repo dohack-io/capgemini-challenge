@@ -35,6 +35,12 @@ public class User {
     @Enumerated(EnumType.STRING)
     private CommuteType defaultCommuteType;
 
+    private Integer level;
+
+    private Integer levelProgression;
+
+    private Integer levelUpThreshold;
+
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "user_id")
     @OrderBy("day ASC")
